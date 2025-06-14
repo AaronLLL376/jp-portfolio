@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +10,12 @@
     <meta property="og:url" content="https://ctssjpit.com/jp_consultant.html">
 
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VXKMN286TH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR-GA4-ID"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-VXKMN286TH');
+        gtag('config', 'YOUR-GA4-ID');
     </script>
 
     <!-- Favicon -->
@@ -166,7 +166,7 @@
 }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body>
     <!-- 導覽列 -->
     <!-- 修改導航列 -->
 <nav class="fixed top-0 left-0 w-full z-40 bg-white/80 navbar-blur shadow-sm">
@@ -304,7 +304,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                     <!-- 服務卡片 1: 跨境人才媒合 -->
-                    <div class="bg-white rounded-lg shadow-md p-8 text-center transform hover:scale-105 transition duration-300">
+                    <div class="bg-white rounded-lg shadow-md p-8 text-center transform hover:scale-105 transition duration-300 service-box">
                         <div class="flex justify-center mb-6">
                             <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.313-2.687 6-6 6s-6-2.687-6-6 2.687-6 6-6 6 2.687 6 6zm10 0c0 3.313-2.687 6-6 6s-6-2.687-6-6 2.687-6 6-6 6 2.687 6 6zm-16.5 0c0 3.313-2.687 6-6 6s-6-2.687-6-6 2.687-6 6-6 6 2.687 6 6zm-5 0c0 3.313-2.687 6-6 6s-6-2.687-6-6 2.687-6 6-6 6 2.687 6 6z"></path>
@@ -320,7 +320,7 @@
                     </div>
 
                     <!-- 服務卡片 2: 一站式系統開發 -->
-                    <div class="bg-white rounded-lg shadow-md p-8 text-center transform hover:scale-105 transition duration-300">
+                    <div class="bg-white rounded-lg shadow-md p-8 text-center transform hover:scale-105 transition duration-300 service-box">
                         <div class="flex justify-center mb-6">
                             <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9.75 12L20.25 12L20.25 17L9.75 17ZM21 17L21 7L3 7L3 17L21 17ZM6 10L6 14"></path>
@@ -756,6 +756,42 @@
         }
     });
 </script>
+
+<script>
+const GAHelper = {
+    isLoaded: () => typeof gtag === 'function',
+    
+    track: (category, action, label) => {
+        if (!GAHelper.isLoaded()) return;
+        gtag('event', action, {
+            'event_category': category,
+            'event_label': label
+        });
+    },
+
+    bindEvents: () => {
+        // Service boxes tracking
+        document.querySelectorAll('.service-box')?.forEach(box => {
+            box.addEventListener('click', e => {
+                const title = e.currentTarget.querySelector('h3')?.textContent || 'unknown';
+                GAHelper.track('Services', 'click', title);
+            });
+        });
+
+        // Interview tool button tracking
+        document.querySelector('.btn-learn-more')?.addEventListener('click', () => {
+            GAHelper.track('Tools', 'click', 'interview_tool');
+        });
+
+        // Job listing button tracking
+        document.querySelector('.job-listing-btn')?.addEventListener('click', () => {
+            GAHelper.track('Jobs', 'click', 'job_listing');
+        });
+    }
+};
+
+document.addEventListener('DOMContentLoaded', GAHelper.bindEvents);
+</script>
             </div>
         </section>
 
@@ -828,378 +864,17 @@
                         </svg>
                         <p class="text-base">神奈川県川崎市川崎区中瀬3丁目20番18-701号</p>
                     </div>
+                    <div class="mt-2 md:mt-0">
+                        Powered by <a href="https://yourstudio.example.com" target="_blank" class="text-blue-400 hover:text-blue-300">數轉工作室</a>
+                        </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                // Ensure the target element exists before scrolling
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-
-                // Close mobile menu if open
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (mobileMenu && mobileMenu.classList.contains('flex')) {
-                    mobileMenu.classList.remove('flex');
-                    mobileMenu.classList.add('hidden');
-                    document.body.style.overflow = 'auto'; // Re-enable scrolling
-                }
-            });
-        });
-
-
-        // Accordion functionality for FAQ
-        document.querySelectorAll('.accordion-header').forEach(button => {
-            button.addEventListener('click', () => {
-                const accordionContent = button.nextElementSibling;
-                const accordionIcon = button.querySelector('.accordion-icon');
-
-                // Toggle visibility
-                accordionContent.classList.toggle('hidden');
-                // Toggle icon rotation
-                accordionIcon.classList.toggle('rotate-180');
-
-                // Optional: Close other open accordions
-                document.querySelectorAll('.accordion-content').forEach(content => {
-                    if (content !== accordionContent && !content.classList.contains('hidden')) {
-                        content.classList.add('hidden');
-                        const icon = content.previousElementSibling.querySelector('.accordion-icon');
-                        if (icon) {
-                            icon.classList.remove('rotate-180');
-                        }
-                    }
-                });
-            });
-        });
-
-        // Form Submission Message
-        const contactForm = document.querySelector('#contact form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent actual form submission
-                const submissionMessage = document.getElementById('submission-message');
-                if (submissionMessage) {
-                    submissionMessage.classList.remove('hidden'); // Show message
-                    this.reset(); // Clear form fields
-                    // Hide message after a few seconds
-                    setTimeout(() => {
-                        submissionMessage.classList.add('hidden');
-                    }, 5000);
-                }
-            });
-        }
-
-        // Job Tab Switching Logic
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        function showTab(tabId) {
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-            });
-            tabButtons.forEach(button => {
-                button.classList.remove('bg-blue-600', 'text-white');
-                button.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
-            });
-
-            const activeContent = document.getElementById(tabId + '-jobs');
-            const activeButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
-
-            if (activeContent && activeButton) {
-                activeContent.classList.add('active');
-                activeButton.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
-                activeButton.classList.add('bg-blue-600', 'text-white');
-            }
-        }
-
-        // Initialize tabs: show Java tab by default
-        showTab('java');
-
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const tabId = button.dataset.tab;
-                showTab(tabId);
-            });
-        });
-
-        // Language toggle (cosmetic, changes HTML lang attribute)
-        const langToggleBtn = document.getElementById('lang-toggle'); // Assuming a button with this ID
-        if (langToggleBtn) {
-            langToggleBtn.addEventListener('click', () => {
-                const htmlTag = document.documentElement;
-                if (htmlTag.lang === 'zh-Hant') {
-                    htmlTag.lang = 'ja';
-                } else {
-                    htmlTag.lang = 'zh-Hant';
-                }
-            });
-        }
-
-        // Job data
-const jobs = {
-    java: {
-        title: "Java 後端工程師",
-        location: "東京 23 區 / 橫濱（可遠端）",
-        locationJp: "勤務地：東京都23区・横浜（リモート可）",
-        salary: "年薪：330 萬日圓以上（依能力）",
-        salaryJp: "年俸：330万円以上（経験・能力による）",
-        techStack: "Java, Spring Boot, MySQL, AWS",
-        requirements: "必備：1 年以上程式開發經驗、良好溝通能力",
-        requirementsJp: "必須：1年以上の開発経験、コミュニケーション力"
-    },
-    csharp: {
-        title: "C# 後端工程師",
-        location: "大阪（可遠端）",
-        locationJp: "勤務地：大阪（リモート可）",
-        salary: "年薪：350 萬日圓以上（依能力）",
-        salaryJp: "年俸：350万円以上（経験・能力による）",
-        techStack: "C#, .NET Core, SQL Server, Azure",
-        requirements: "必備：2 年以上 .NET 開發經驗",
-        requirementsJp: "必須：2年以上の.NET開発経験"
-    },
-    salesforce: {
-        title: "Salesforce 工程師",
-        location: "東京（混合辦公）",
-        locationJp: "勤務地：東京（ハイブリッド勤務）",
-        salary: "年薪：400 萬日圓以上（依能力）",
-        salaryJp: "年俸：400万円以上（経験・能力による）",
-        techStack: "Apex, Lightning Web Components, SOQL",
-        requirements: "必備：Salesforce 開發認證",
-        requirementsJp: "必須：Salesforce 開発認定"
-    }
-};
-
-// Function to create job card HTML
-function createJobCard(jobData) {
-    return `
-        <div class="bg-white rounded-lg shadow-md p-8 transform hover:scale-105 transition duration-300 max-w-2xl w-full">
-            <h3 class="text-gray-900 text-2xl font-bold mb-3">${jobData.title}</h3>
-            <p class="text-gray-700 text-base mb-2">
-                <span class="font-semibold">工作地點：</span>${jobData.location}<br>
-                <span lang="ja" class="text-gray-600 text-sm">${jobData.locationJp}</span>
-            </p>
-            <p class="text-gray-700 text-base mb-2">
-                <span class="font-semibold">薪資範圍：</span>${jobData.salary}<br>
-                <span lang="ja" class="text-gray-600 text-sm">${jobData.salaryJp}</span>
-            </p>
-            <p class="text-gray-700 text-base mb-2">
-                <span class="font-semibold">技術要求：</span>${jobData.techStack}
-            </p>
-            <p class="text-gray-700 text-base mb-6">
-                ${jobData.requirements}<br>
-                <span lang="ja" class="text-gray-600 text-sm">${jobData.requirementsJp}</span>
-            </p>
-            <a href="mailto:aaron.liao@ctss.co.jp?subject=應徵 ${jobData.title}&body=您好，我想應徵 ${jobData.title} 職位..." 
-               class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md text-base shadow-md transition duration-300">
-                立即應徵 / 応募する
-            </a>
-        </div>
-    `;
-}
-
-// Add click event listeners to job category buttons
-document.querySelectorAll('.job-category-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        // Remove active class from all buttons
-        document.querySelectorAll('.job-category-btn').forEach(btn => {
-            btn.classList.remove('bg-blue-600', 'text-white');
-            btn.classList.add('bg-gray-200', 'text-gray-700');
-        });
-
-        // Add active class to clicked button
-        this.classList.remove('bg-gray-200', 'text-gray-700');
-        this.classList.add('bg-blue-600', 'text-white');
-
-        // Get job category and create card
-        const category = this.dataset.category;
-        const jobData = jobs[category];
-        const container = document.getElementById('jobCardsContainer');
-
-        // Animate card replacement
-        container.style.opacity = '0';
-        setTimeout(() => {
-            container.innerHTML = createJobCard(jobData);
-            container.style.opacity = '1';
-        }, 300);
-
-        // Track in GA
-        gtag('event', 'view_job', {
-            'event_category': 'Jobs',
-            'event_label': jobData.title
-        });
-    });
-});
-
-// Show first category by default
-document.querySelector('.job-category-btn').click();
-
-// Add tracking for partner clicks
-document.querySelectorAll('.partner-link').forEach(link => {
-    link.addEventListener('click', function() {
-        gtag('event', 'partner_click', {
-            'event_category': 'Outbound Links',
-            'event_label': this.querySelector('img').alt,
-            'transport_type': 'beacon'
-        });
-    });
-});
-
-// Custom tracking helper
-function trackEvent(eventName, parameters = {}) {
-    gtag('event', eventName, {
-        ...parameters,
-        page_title: document.title,
-        page_location: window.location.href,
-        timestamp: new Date().toISOString()
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. 頁面瀏覽深度追蹤
-    let maxScroll = 0;
-    let startTime = Date.now();
-    
-    window.addEventListener('scroll', debounce(() => {
-        const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
-        if (scrollPercent > maxScroll) {
-            maxScroll = scrollPercent;
-            trackEvent('scroll_depth', {
-                depth_percentage: Math.round(maxScroll),
-                scroll_time: Math.round((Date.now() - startTime) / 1000)
-            });
-        }
-    }, 500));
-
-    // 2. 導航點擊追蹤
-    document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            trackEvent('navigation_click', {
-                link_text: link.textContent,
-                link_url: link.href,
-                section_name: link.getAttribute('href').replace('#', '')
-            });
-        });
-    });
-
-    // 3. 表單互動追蹤
-    const contactForm = document.querySelector('#contact form');
-    if (contactForm) {
-        // 表單開始填寫
-        contactForm.querySelectorAll('input, textarea, select').forEach(field => {
-            field.addEventListener('focus', () => {
-                trackEvent('form_field_focus', {
-                    field_name: field.name,
-                    field_type: field.type
-                });
-            });
-        });
-
-        // 表單提交追蹤
-        contactForm.addEventListener('submit', () => {
-            trackEvent('form_submit', {
-                form_id: 'contact_form',
-                subject: document.querySelector('#subject').value
-            });
-        });
-    }
-
-    // 4. FAQ 互動追蹤
-    document.querySelectorAll('.accordion-header').forEach(header => {
-        header.addEventListener('click', () => {
-            trackEvent('faq_interaction', {
-                question: header.querySelector('span').textContent,
-                action: header.nextElementSibling.classList.contains('hidden') ? 'open' : 'close'
-            });
-        });
-    });
-
-    // 5. 職缺互動追蹤
-    document.querySelectorAll('.job-category-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            trackEvent('job_category_view', {
-                category: btn.dataset.category,
-                position: btn.textContent.trim()
-            });
-        });
-    });
-
-    // 6. 社群媒體點擊追蹤
-    document.querySelectorAll('footer a[href*="linkedin"], footer a[href*="facebook"], footer a[href*="instagram"]').forEach(link => {
-        link.addEventListener('click', () => {
-            trackEvent('social_click', {
-                platform: link.href.includes('linkedin') ? 'LinkedIn' : 
-                         link.href.includes('facebook') ? 'Facebook' : 'Instagram',
-                url: link.href
-            });
-        });
-    });
-
-    // 7. 停留時間追蹤
-    let startViewTime = Date.now();
-    window.addEventListener('beforeunload', () => {
-       
-
-        trackEvent('page_view_duration', {
-            duration_seconds: Math.round((Date.now() - startViewTime) / 1000)
-        });
-    });
-
-    // 8. 文件下載追蹤
-    document.querySelectorAll('a[href$=".pdf"], a[href$=".doc"], a[href$=".docx"]').forEach(link => {
-        link.addEventListener('click', () => {
-            trackEvent('file_download', {
-                file_name: link.href.split('/').pop(),
-                file_type: link.href.split('.').pop()
-            });
-        });
-    });
-
-    // 9. 語言切換追蹤
-    const langToggleBtn = document.getElementById('lang-toggle');
-    if (langToggleBtn) {
-        langToggleBtn.addEventListener('click', () => {
-            trackEvent('language_switch', {
-                from_language: document.documentElement.lang,
-                to_language: document.documentElement.lang === 'zh-Hant' ? 'ja' : 'zh-Hant'
-            });
-        });
-    }
-
-
-
-    // 10. 錯誤追蹤
-    window.addEventListener('error', (e) => {
-        trackEvent('js_error', {
-            error_message: e.message,
-           
-            error_line: e.lineno,
-            error_source: e.filename
-        });
-    });
-
-    // Debounce helper function
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-});
-    </script>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/ga_events.js"></script>
 </body>
 </html>

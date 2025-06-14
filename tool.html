@@ -23,6 +23,15 @@
     }
   </script>
   
+  <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VXKMN286TH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VXKMN286TH');
+    </script>
+
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -172,7 +181,14 @@
             >
               履歷審核
             </button>
-          </div>
+            <a href="https://ctssjpit.com" target="_blank">
+              <button
+                class="bg-green-600 text-white px-10 py-5 rounded-full text-2xl font-bold shadow-xl hover:bg-green-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300"
+              >
+                TO CTSS
+              </button>
+            </a>
+           </div>
 
           <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-8 max-w-6xl mx-auto">
             <FeatureCard
@@ -1149,5 +1165,106 @@ ${analysis.improvement_suggestions}
     // 掛載應用
     app.mount('#app');
   </script>
+
+  <script>
+// 表單提交追蹤
+document.querySelector('form').addEventListener('submit', function(e) {
+    gtag('event', 'form_submit', {
+        'form_name': 'interview_tool'
+    });
+});
+
+// 工具功能使用追蹤
+document.querySelectorAll('.tool-feature').forEach(feature => {
+    feature.addEventListener('click', function() {
+        gtag('event', 'tool_feature_use', {
+            'feature_name': this.getAttribute('data-feature')
+        });
+    });
+});
+</script>
+
+<!-- Add Footer Section -->
+<footer class="bg-gray-800 text-gray-300">
+  <!-- 上半部：內容區 -->
+  <div class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <!-- 關於我們 -->
+    <div>
+      <h4 class="text-xl font-bold text-white mb-4">關於日文面試通</h4>
+      <p class="text-sm leading-relaxed">
+        提供最完整、最實用的日文面試準備資源，結合 AI 模擬與一對一指導，助您面試高分通過。
+      </p>
+    </div>
+
+    <!-- 快速連結 -->
+    <nav aria-label="Footer Links" class="space-y-2">
+      <h4 class="text-xl font-bold text-white mb-4">快速連結</h4>
+      <ul class="space-y-1 text-sm">
+        <li><a href="#landing" class="hover:text-white">首頁</a></li>
+        <li><a href="#interview-essentials" class="hover:text-white">面試精華</a></li>
+        <li><a href="#vocabulary-usage" class="hover:text-white">敬語用具</a></li>
+        <li><a href="#resume-review" class="hover:text-white">履歷審核</a></li>
+        <li><a href="#contact" class="hover:text-white">聯絡我們</a></li>
+      </ul>
+    </nav>
+
+    <!-- 訂閱電子報 -->
+    <div>
+      <h4 class="text-xl font-bold text-white mb-4">訂閱電子報</h4>
+      <form class="flex flex-col sm:flex-row sm:items-center">
+        <label for="footer-newsletter" class="sr-only">Email 地址</label>
+        <input
+          type="email"
+          id="footer-newsletter"
+          placeholder="輸入 Email"
+          class="w-full sm:flex-grow px-4 py-2 mb-3 sm:mb-0 rounded-md bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          type="submit"
+          class="sm:ml-2 px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-md text-white font-medium transition"
+        >
+          訂閱
+        </button>
+      </form>
+      <p class="mt-3 text-xs text-gray-500">
+        我們將定期推送最新面試技巧與資源，保證不會外洩您的信箱。
+      </p>
+    </div>
+
+    <!-- 聯絡與社群 -->
+    <div>
+      <h4 class="text-xl font-bold text-white mb-4">聯絡我們</h4>
+      <address class="not-italic text-sm space-y-2">
+        <p>📍 台北市範本路123號</p>
+        <p>📞 (02) 1234-5678</p>
+        <p>✉️ service@example.com</p>
+      </address>
+    
+      <div class="mt-4 flex space-x-3">
+        <a href="#" aria-label="Facebook" class="hover:text-white">
+          <svg class="w-6 h-6" /* 放上您的 SVG icon */></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn" class="hover:text-white">
+          <svg class="w-6 h-6"></svg>
+        </a>
+        <a href="#" aria-label="Instagram" class="hover:text-white">
+          <svg class="w-6 h-6"></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 下半部：版權聲明 -->
+  <div class="border-t border-gray-700">
+  <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center text-center text-sm text-gray-500">
+    <div>
+      © 2025 日文面試通。版權所有。<br class="md:hidden">建議使用 Chrome、Firefox 瀏覽器以獲得最佳體驗。
+    </div>
+    <div class="mt-2 md:mt-0">
+      Powered by <a href="https://yourstudio.example.com" target="_blank" class="text-blue-400 hover:text-blue-300">數轉工作室</a>
+    </div>
+  </div>
+</div>
+</footer>
 </body>
 </html>

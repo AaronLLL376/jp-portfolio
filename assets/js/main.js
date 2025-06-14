@@ -436,3 +436,32 @@ function initializeCanvas() {
 }
 
 })()
+
+/**
+ * Main JavaScript functionality
+ */
+
+// Navigation toggle for mobile
+document.addEventListener('DOMContentLoaded', () => {
+    // Mobile nav toggle
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const navbar = document.querySelector('#navbar');
+    
+    if (mobileNavToggle && navbar) {
+        mobileNavToggle.addEventListener('click', () => {
+            navbar.classList.toggle('navbar-mobile');
+            mobileNavToggle.classList.toggle('bi-list');
+            mobileNavToggle.classList.toggle('bi-x');
+        });
+    }
+    
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href'))?.scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+});

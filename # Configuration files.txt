@@ -1,0 +1,9 @@
+# Configuration files
+config.js
+*.env
+.env*
+*.config.js
+
+# IDE files
+.vscode/
+.idea/

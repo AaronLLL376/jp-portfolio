@@ -49,6 +49,34 @@
     transition: all 0.3s ease;
 }
 
+/* Return Button Styles */
+.return-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.btn-return {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-return:hover {
+    background: var(--secondary-color);
+    color: #fff;
+}
+
+.btn-return i {
+    margin-right: 8px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .services .row {
