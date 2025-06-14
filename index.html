@@ -123,6 +123,47 @@
         .tool-button:hover {
             background: #0056b3;
         }
+
+        /* 新增面試工具區塊樣式 */
+.tool-box {
+    background: var(--section-bg);
+    padding: 40px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.tool-box .description {
+    font-size: 18px;
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+
+.tool-box .features-list {
+    margin: 30px 0;
+}
+
+.tool-box .features-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tool-box .features-list ul li {
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.tool-box .features-list ul li i {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+/* 保持按鈕樣式與網站一致 */
+.tool-box .btn-learn-more {
+    margin-top: 20px;
+    display: inline-block;
+}
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -699,22 +740,32 @@
         </section>
 
         <!-- 新增面試工具區塊 -->
-        <div class="content">
-    <section class="interview-tools">
-        <h2>面試準備工具</h2>
-        <p>協助您優化履歷和面試準備的專業工具</p>
-        <div class="tools-features">
-            <ul>
-                <li>履歷優化建議</li>
-                <li>面試問題準備</li>
-                <li>自我介紹生成器</li>
-            </ul>
+        <section id="interview-tools" class="section">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>面試準備工具</h2>
+            <p>Interview Preparation Tools</p>
         </div>
-        <button onclick="window.location.href='tool.html'" class="tool-button">
-            開始使用工具
-        </button>
-    </section>
-</div>
+
+        <div class="row content" data-aos="fade-up">
+            <div class="col-lg-12">
+                <div class="tool-box text-center">
+                    <p class="description">
+                        提供專業的履歷優化和面試準備工具，協助您更好地展現自我價值
+                    </p>
+                    <div class="features-list">
+                        <ul>
+                            <li><i class="bi bi-check-circle"></i> 履歷內容優化建議</li>
+                            <li><i class="bi bi-check-circle"></i> 面試常見問題準備</li>
+                            <li><i class="bi bi-check-circle"></i> 自我介紹生成器</li>
+                        </ul>
+                    </div>
+                    <a href="tool.html" class="btn-learn-more">開始使用工具</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     </main>
 
     <!-- 9. 頁尾 Footer -->
@@ -1134,6 +1185,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('error', (e) => {
         trackEvent('js_error', {
             error_message: e.message,
+           
             error_line: e.lineno,
             error_source: e.filename
         });
