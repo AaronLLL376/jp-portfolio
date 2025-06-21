@@ -381,23 +381,34 @@
                     <div class="md:absolute md:left-0 md:top-1/4 md:w-full md:border-t-2 md:border-gray-300 md:z-0 hidden md:block"></div>
                     
                     <div class="flex flex-col items-center text-center mb-12 md:mb-0 md:w-1/5 relative">
-                        <!-- 圓形編號 -->
-                        <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg mb-4">
-                            0
-                        </div>
-                        <!-- 標題（日文） -->
-                        <h4 class="text-gray-900 text-lg font-semibold mb-2">面接準備</h4>
-                        <!-- 說明（日文） -->
-                        <p class="text-gray-700 text-sm">ツールページでは日本語での面接準備を提供します。</p>
-                        <!-- 新增引導按鈕 -->
-                        <a href="https://ctssjpit.com/tool.html"
-                            class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-                            ツールページへ
-                        </a>
-                        <!-- 手機版連接線（可保留） -->
-                        <div class="absolute md:hidden top-0 left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-300 -z-10"></div>
-                        <div class="absolute md:hidden bottom-0 left-1/2 transform -translate-x-1/2 h-8 w-0.5 bg-gray-300 -z-10"></div>
-                        </div>
+                    <!-- 圓形編號 -->
+                    <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg mb-4">
+                        0
+                    </div>
+                    <!-- 標題（日文），旁邊加上 BETA 標籤 -->
+                    <h4 class="text-gray-900 text-lg font-semibold mb-2 flex items-center">
+                        面接準備
+                        <span class="ml-2 inline-block bg-yellow-400 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                        BETA
+                        </span>
+                    </h4>
+                    <!-- 開發中提示 -->
+                    <p class="text-gray-500 text-sm italic mb-2">
+                        （工具開發中…今後公開予定）
+                    </p>
+                    <!-- 說明（日文） -->
+                    <p class="text-gray-700 text-sm">
+                        ツールページでは日本語での面接準備を提供します。
+                    </p>
+                    <!-- 新增引導按鈕 -->
+                    <a href="https://ctssjpit.com/tool.html"
+                        class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                        ツールページへ
+                    </a>
+                    <!-- 手機版連接線（可保留） -->
+                    <div class="absolute md:hidden top-0 left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-300 -z-10"></div>
+                    <div class="absolute md:hidden bottom-0 left-1/2 transform -translate-x-1/2 h-8 w-0.5 bg-gray-300 -z-10"></div>
+                    </div>
 
 
                     <div class="flex flex-col md:flex-row justify-between w-full relative z-10">
@@ -448,32 +459,135 @@
             </div>
         </section>
 
-        <!-- 5. 長期招募區（Recruit） -->
-        <section id="recruit" class="section-padding bg-gray-100" data-sticky="true">
-            <div class="max-w-7xl mx-auto px-6">
+            <!-- 長期招募區（Recruit） -->
+        <section id="recruit" class="section-padding py-16 bg-gray-100 min-h-screen">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
                 <h2 class="text-gray-900 text-3xl md:text-4xl font-semibold mb-12 text-center relative">
-                    <span class="inline-block relative">
+                    <span class="inline-block relative pb-5">
                         熱門職缺
-                        <span class="absolute left-1/2 transform -translate-x-1/2 bottom-0 w-24 h-1 bg-blue-500 rounded-full -mb-4"></span>
+                        <!-- 底部藍色裝飾線 -->
+                        <span class="absolute left-1/2 transform -translate-x-1/2 bottom-0 w-24 h-1 bg-blue-500 rounded-full -mb-2"></span>
                     </span>
                 </h2>
 
-                <!-- Job Category Buttons -->
-                <div class="flex flex-wrap justify-center gap-4 mb-8">
-                    <button class="job-category-btn px-6 py-3 rounded-md text-lg font-semibold transition duration-300 bg-gray-200 hover:bg-gray-300" data-category="java">
+                <!-- 職位類別按鈕 -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="job-category-btn px-6 py-3 rounded-md text-lg font-semibold transition duration-300 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-category="java">
                         Java 後端工程師
                     </button>
-                    <button class="job-category-btn px-6 py-3 rounded-md text-lg font-semibold transition duration-300 bg-gray-200 hover:bg-gray-300" data-category="csharp">
+                    <button class="job-category-btn px-6 py-3 rounded-md text-lg font-semibold transition duration-300 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-category="csharp">
                         C# 後端工程師
                     </button>
-                    <button class="job-category-btn px-6 py-3 rounded-md text-lg font-semibold transition duration-300 bg-gray-200 hover:bg-gray-300" data-category="salesforce">
+                    <button class="job-category-btn px-6 py-3 rounded-md text-lg font-semibold transition duration-300 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-category="salesforce">
                         Salesforce 工程師
                     </button>
                 </div>
 
-                <!-- Job Cards Container -->
+                <!-- 職位卡片容器 -->
                 <div id="jobCardsContainer" class="flex justify-center">
-                    <!-- Cards will be dynamically inserted here -->
+                    <!-- 卡片將會動態插入這裡 -->
+                    <!-- Java 職位內容 -->
+                    <div id="java-jobs" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 w-full max-w-4xl">
+                        <!-- Java Job Card 1 -->
+                        <div class="bg-white rounded-lg shadow-md p-8 transform hover:scale-105 transition duration-300">
+                            <h3 class="text-gray-900 text-2xl font-bold mb-3">Java 後端工程師</h3>
+                            <p class="text-gray-700 text-base mb-2">
+                                <span class="font-semibold">工作地點：</span>東京 23 區 / 橫濱（可遠端）<br>
+                                <span lang="ja" class="text-gray-600 text-sm">勤務地：東京都23区・横浜（リモート可）</span>
+                            </p>
+                            <p class="text-gray-700 text-base mb-2">
+                                <span class="font-semibold">年薪：</span>330 萬日圓以上（依能力）<br>
+                                <span lang="ja" class="text-gray-600 text-sm">オープン系　システムエンジニア(Java)</span>
+                            </p>
+                            <p class="text-gray-700 text-base mb-2">
+                                <span class="font-semibold">工作內容：</span>業務分析、提案、開發至運維；新人可先參與下游工程。<br>
+                                <span lang="ja" class="text-gray-600 text-sm">業務分析から提案、導入計画、開発、運用までを担当。新人は詳細設計～テストの可能性あり。</span>
+                            </p>
+                            <p class="text-gray-700 text-base mb-2">
+                                <span class="font-semibold">必備：</span>1 年以上程式開發經驗、良好溝通能力<br>
+                                <span lang="ja" class="text-gray-600 text-sm">必須：1年以上の開発経験、コミュニケーション力</span>
+                            </p>
+                            <p class="text-gray-700 text-base mb-6">
+                                <span class="font-semibold">加分：</span>Java 3 年以上 / 認證 / 進度管理經驗<br>
+                                <span lang="ja" class="text-gray-600 text-sm">歓迎：Java 3年以上、資格保有、PJ管理経験</span>
+                            </p>
+                            <button
+                                class="apply-btn inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md text-base shadow-md transition duration-300"
+                                data-title="Java 後端工程師"
+                                >
+                                應徵 / 応募する
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- C# 職位內容 -->
+                    <div id="csharp-jobs" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 w-full max-w-4xl">
+                        <!-- C# Job Card 1 -->
+                        <div class="bg-white rounded-lg shadow-md p-8 transform hover:scale-105 transition duration-300">
+                            <h3 class="text-gray-900 text-2xl font-bold mb-3">C# 後端工程師</h3>
+                            <p class="text-gray-700 text-base mb-2">
+                                <span class="font-semibold">工作地點：</span>東京 / 大阪<br>
+                                <span lang="ja" class="text-gray-600 text-sm">勤務地：東京都・大阪府</span>
+                            </p>
+                            <p class="text-gray-700 text-base mb-2">
+                                <span class="font-semibold">年薪：</span>350 萬日圓以上<br>
+                                <span lang="ja" class="text-gray-600 text-sm">年収：350万円以上</span>
+                            </p>
+                            <p class="text-gray-700 text-base mb-2">
+                                <span class="font-semibold">工作內容：</span>開發與維護基於 .NET Core 的應用程式。<br>
+                                <span lang="ja" class="text-gray-600 text-sm">.NET Coreベースのアプリケーション開発・保守。</span>
+                            </p>
+                            <p class="text-gray-700 text-base mb-2">
+                                <span class="font-semibold">必備：</span>2 年以上 C# 開發經驗，熟悉 ASP.NET。<br>
+                                <span lang="ja" class="text-gray-600 text-sm">必須：2年以上のC#開発経験、ASP.NET熟練。</span>
+                            </p>
+                            <p class="text-gray-700 text-base mb-6">
+                                <span class="font-semibold">加分：</span>Azure 或 AWS 經驗，SQL Server 經驗。<br>
+                                <span lang="ja" class="text-gray-600 text-sm">歓迎：Azure または AWS 経験、SQL Server 経験。</span>
+                            </p>
+                            <button
+                                class="apply-btn inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md text-base shadow-md transition duration-300"
+                                data-title="C# 後端工程師"
+                                >
+                                應徵 / 応募する
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Salesforce 職位內容 -->
+                    <div id="salesforce-jobs" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 w-full max-w-4xl">
+                        <!-- Salesforce Job Card 1 -->
+                        <div class="bg-white rounded-lg shadow-md p-8 transform hover:scale-105 transition duration-300">
+                            <h3 class="text-gray-900 text-2xl font-bold mb-3">Salesforce 工程師</h3>
+                            <p class="text-gray-700 text-base mb-2">
+                                <span class="font-semibold">工作地點：</span>東京<br>
+                                <span lang="ja" class="text-gray-600 text-sm">勤務地：東京都</span>
+                            </p>
+                            <p class="text-gray-700 text-base mb-2">
+                                <span class="font-semibold">年薪：</span>400 萬日圓以上<br>
+                                <span lang="ja" class="text-gray-600 text-sm">年収：400万円以上</span>
+                            </p>
+                            <p class="text-gray-700 text-base mb-2">
+                                <span class="font-semibold">工作內容：</span>實施、配置和客製化 Salesforce CRM 解決方案。<br>
+                                <span lang="ja" class="text-gray-600 text-sm">Salesforce CRMソリューションの導入、設定、カスタマイズ。</span>
+                            </p>
+                            <p class="text-gray-700 text-base mb-2">
+                                <span class="font-semibold">必備：</span>1 年以上 Salesforce 開發經驗，熟悉 Apex/Lightning。<br>
+                                <span lang="ja" class="text-gray-600 text-sm">必須：1年以上のSalesforce開発経験、Apex/Lightning熟練。</span>
+                            </p>
+                            <p class="text-gray-700 text-base mb-6">
+                                <span class="font-semibold">加分：</span>Salesforce 認證，Service Cloud 或 Sales Cloud 經驗。<br>
+                                <span lang="ja" class="text-gray-600 text-sm">歓迎：Salesforce認定資格、Service Cloud または Sales Cloud 経験。</span>
+                            </p>
+                            <button
+                                class="apply-btn inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md text-base shadow-md transition duration-300"
+                                data-title="salesforce 後端工程師"
+                                >
+                                應徵 / 応募する
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -743,7 +857,45 @@
 </form>
 
 <!-- Add this JavaScript for form handling -->
-<script>
+<script>    
+    document.addEventListener('DOMContentLoaded', () => {
+    const btns = document.querySelectorAll('.job-category-btn');
+    const tabs = document.querySelectorAll('.tab-content');
+
+    function show(cat) {
+      tabs.forEach(t => t.style.display = 'none');
+      document.getElementById(`${cat}-jobs`).style.display = 'grid';
+      btns.forEach(b=>{
+        b.classList.toggle('bg-blue-500 text-white', b.dataset.category===cat);
+        b.classList.toggle('bg-gray-200', b.dataset.category!==cat);
+      });
+    }
+
+    btns.forEach(b=>b.addEventListener('click', ()=> show(b.dataset.category)));
+    show('java'); // 預設顯示 Java
+  });
+
+    document.querySelectorAll('.apply-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const title = btn.dataset.title || '應徵職缺';
+      const email = 'aaron.liao@ctss.co.jp';
+      // encodeURIComponent 處理中文標題
+      const subject = encodeURIComponent(title);
+      window.location.href = `mailto:${email}?subject=${subject}&body=`;
+    });
+  });
+
+    document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const content = header.nextElementSibling;
+      const icon = header.querySelector('.accordion-icon');
+      // 切換顯示/隱藏
+      content.classList.toggle('hidden');
+      // 翻轉箭頭
+      icon.classList.toggle('rotate-180');
+    });
+  });
+    // Form submission handling
     const form = document.querySelector('form');
     const loadingMessage = document.querySelector('.loading');
     const errorMessage = document.querySelector('.error-message');
@@ -853,23 +1005,7 @@ document.addEventListener('DOMContentLoaded', GAHelper.bindEvents);
             <!-- 右側欄：社群媒體圖標與聯絡資訊 -->
             <div class="text-center md:text-left">
                 <h4 class="text-white text-lg font-semibold mb-4">聯絡我們</h4>
-                <div class="flex justify-center md:justify-start space-x-6 mb-6">
-                    <a href="https://www.linkedin.com/company/ctss-consulting/" target="_blank" class="text-gray-300 hover:text-blue-500 transition duration-300">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                        </svg>
-                    </a>
-                    <a href="https://www.facebook.com/ctss.consulting" target="_blank" class="text-gray-300 hover:text-blue-500 transition duration-300">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M24 12c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H9.77V12h2.355V9.403c0-2.357 1.472-3.665 3.563-3.665 1.023 0 1.947.074 2.213.107v2.438l-1.442.001c-1.129 0-1.347.535-1.347 1.322V12h2.891l-.447 3.493h-2.444v8.385C19.612 22.954 24 17.99 24 12z" />
-                        </svg>
-                    </a>
-                    <a href="https://www.instagram.com/ctss.consulting/" target="_blank" class="text-gray-300 hover:text-blue-500 transition duration-300">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.77 1.624 4.974 4.974.058 1.265.069 1.645.069 4.849 0 3.204-.012 3.584-.07 4.85-1.624 3.252-1.624 4.77-4.974 4.974-1.265.058-1.645.069-4.849.069-3.204 0-3.584-.012-4.85-.07-3.252-.148-4.77-1.624-4.974-4.974-.058-1.265-.069-1.645-.069-4.849 0-3.204.012-3.584.07-4.85 1.624-3.252 1.624-4.77 4.974-4.974 1.265-.058 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.35 0-6.726 2.376-6.726 6.726 0 1.28.014 1.688.072 4.947.058 3.259 1.624 4.77 4.974 4.974 1.265.058 1.645.069 4.849.069 3.204 0 3.584-.012 4.85-.07 3.252-.148 4.77-1.624 4.974-4.974.058-1.265.069-1.645.069-4.849 0-3.204.012-3.584.07-4.85-1.624-3.252-1.624-4.77-4.974-4.974-1.265-.058-1.645-.069-4.849-.069zm0 5.838c-3.4 0-6.162 2.762-6.162 6.162s2.762 6.162 6.162 6.162 6.162-2.762 6.162-6.162-2.762-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z" />
-                        </svg>
-                    </a>
-                </div>
+                
                 <div class="space-y-3">
                     <div class="flex items-center justify-center md:justify-start">
                         <svg class="w-5 h-5 mr-3 text-gray-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -890,7 +1026,7 @@ document.addEventListener('DOMContentLoaded', GAHelper.bindEvents);
                         <p class="text-base">神奈川県川崎市川崎区中瀬3丁目20番18-701号</p>
                     </div>
                     <div class="mt-2 md:mt-0">
-                        Powered by <a href="https://yourstudio.example.com" target="_blank" class="text-blue-400 hover:text-blue-300">數轉工作室</a>
+                        Powered by <a href="#"  class="text-blue-400 hover:text-blue-300">數轉工作室</a>
                         </div>
                 </div>
             </div>
