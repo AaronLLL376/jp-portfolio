@@ -1,0 +1,11 @@
+# Configuration files
+config.js
+**/config.js
+.env*
+
+# IDE files
+.vscode/
+.idea/
+
+# Git submodule files
+.gitmodules
