@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日語學習平台 - N4級別</title>
+    <!-- 載入 Vue.js 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 載入 Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLp/hJ5FqF5vF4A9zX7p/h5WJm/8hB7c7p/j7t4tX2X/zT5p4B1c1g6h4/g9c4q1j8b6N5b/G6D3d0c2eB2L9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      /* 使用 Inter 字體以增加專業感 */
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8fafc; /* 淺色背景 */
+        color: #334155; /* 深石板灰文字 */
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* 自訂樣式以覆寫部分 Tailwind 預設 */
+      .card-shadow {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+      
+      .quiz-option:hover {
+        background-color: #e2e8f0; /* 懸停時的背景色 */
+      }
+
+      /* 測驗結果樣式 */
+      .quiz-correct-option {
+        background-color: #d1fae5; /* 綠色背景 */
+        border-color: #10b981; /* 綠色邊框 */
+      }
+      .quiz-incorrect-option {
+        background-color: #fee2e2; /* 紅色背景 */
+        border-color: #ef4444; /* 紅色邊框 */
+      }
+
+      /* Ruby 注音樣式 */
+      ruby {
+        ruby-position: over;
+      }
+      
+    </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script type="module">
+    import { createApp, ref, reactive, computed } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+    // Vue 應用程式元件
+    const App = {
+      setup() {
+        // 所有網站內容的資料來源，區分為「聽力」和「文法」和「閱讀」
+        const listeningData = ref([
+          {
+            title: '主題一：生活（生活）',
+            lessons: [
+              {
+                lessonTitle: '日本料理の作り方',
+                audioPath: 'N4_content/日本料理の作り方.wav',
+                subtitle: {
+                  japanese: '<p><ruby>今日<rt>きょう</rt></ruby>は<ruby>簡単<rt>かんたん</rt></ruby>な<ruby>日本料理<rt>にほんりょうり</rt></ruby>、おにぎりの<ruby>作<rt>つく</rt></ruby>り<ruby>方<rt>かた</rt></ruby>を<ruby>紹介<rt>しょうかい</rt></ruby>します。<ruby>必要<rt>ひつよう</rt></ruby>な<ruby>材料<rt>ざいりょう</rt></ruby>は、<ruby>温<rt>あたた</rt></ruby>かい<ruby>ご飯<rt>ごはん</rt></ruby>と<ruby>塩<rt>しお</rt></ruby>、それから<ruby>海苔<rt>のり</rt></ruby>です。<ruby>好<rt>す</rt></ruby>きな<ruby>具材<rt>ぐざい</rt></ruby>も<ruby>入<rt>い</rt></ruby>れることができます。たとえば、<ruby>梅干<rt>うめぼし</rt></ruby>や<ruby>鮭<rt>さけ</rt></ruby>などです。<br><br>まず、<ruby>手<rt>て</rt></ruby>に<ruby>少<rt>すこ</rt></ruby>し<ruby>水<rt>みず</rt></ruby>をつけて、<ruby>塩<rt>しお</rt></ruby>をつけます。それから、<ruby>温<rt>あたた</rt></ruby>かい<ruby>ご飯<rt>ごはん</rt></ruby>を<ruby>手<rt>て</rt></ruby>に<ruby>取<rt>と</rt></ruby>ります。<ruby>ご飯<rt>ごはん</rt></ruby>の<ruby>真<rt>まん</rt></ruby>ん<ruby>中<rt>なか</rt></rt>に、<ruby>好<rt>す</rt></ruby>きな<ruby>具材<rt>ぐざい</rt></ruby>を<ruby>入<rt>い</rt></ruby>れてください。<ruby>ご飯<rt>ごはん</rt></ruby>を<ruby>三角<rt>さんかく</rt></ruby>や<ruby>丸<rt>まる</rt></ruby>い<ruby>形<rt>かたち</rt></ruby>に<ruby>作<rt>つく</rt></ruby>ります。<ruby>最後<rt>さいご</rt></ruby>に、<ruby>海苔<rt>のり</rt></ruby>を<ruby>巻<rt>ま</rt></ruby>いて<ruby>完成<rt>かんせい</rt></ruby>です。<ruby>作<rt>つく</rt></ruby>り<ruby>方<rt>かた</rt></ruby>はとても<ruby>簡単<rt>かんたん</rt></ruby>ですが、<ruby>作<rt>つく</rt></ruby>ったばかりのおにぎりはとてもおいしいですよ。</p>',
+                  chinese: '<p>大家好，今天我將介紹簡單的日本料理，飯糰的製作方法。需要的材料是溫熱的米飯、鹽，還有海苔。您也可以放入自己喜歡的餡料。例如，梅干或是鮭魚等。<br><br>首先，手上沾一點水，再沾上鹽。接著，將溫熱的米飯取在手上。在米飯中間，放入自己喜歡的餡料。將米飯做成三角形或圓形的形狀。最後，包上海苔就完成了。雖然製作方法很簡單，但剛做好的飯糰非常好吃喔。</p>'
+                },
+                phrases: [
+                  '【~方】 (V-masu形 + 方): ...的方法',
+                  '【~てから】 (V-te形 + から): ...之後',
+                  '【~を入れる】 (O + を入れる): 放入...、加入...'
+                ],
+                vocabulary: [
+                  '料理（りょうり）：料理、菜餚',
+                  '材料（ざいりょう）：材料、食材',
+                  '簡単（かんたん）：簡單的',
+                  '具材（ぐざい）：餡料、配料',
+                  '完成（かんせい）：完成、完工'
+                ],
+                questions: [
+                  { text: 'おにぎりを作るのに、一番大切な材料は何ですか？', options: ['海苔', 'ご飯', '梅干し', '鮭'], answer: 'ご飯', explanation: '根據文章內容，飯糰最主要的材料是溫熱的米飯。', extendedInfo: '「ご飯」是「米飯」的意思，是製作飯糰不可或缺的材料。' },
+                  { text: 'ご飯の中に具材を入れた後、次に何をしますか？', options: ['塩をつけます', '手に水をつけます', '形を作ります', '海苔を巻きます'], answer: '形を作ります', explanation: '根據文章「ご飯の真ん中に、好きな具材を入れてください。ご飯を三角や丸い形に作ります。」可知，放入餡料之後是捏成形狀。', extendedInfo: '步驟為：手上沾水 → 沾鹽 → 取米飯 → 包餡料 → 捏形狀 → 包海苔。' },
+                  { text: '話し手は、出来上がったばかりのおにぎりについて、どう思っていますか？', options: ['作るのが大変だ', 'とてもおいしい', '温かくない', '塩が足りない'], answer: 'とてもおいしい', explanation: '文章結尾提到「作ったばかりのおにぎりはとてもおいしいですよ」，意思是「剛做好的飯糰非常好吃喔」。', extendedInfo: '「ばかり」表示「剛剛...」，「おいしい」是「好吃」的意思。' }
+                ]
+              },
+              {
+                lessonTitle: '我的週末',
+                audioPath: 'N4_content/我的週末.wav',
+                subtitle: {
+                  japanese: '<p><ruby>先週末<rt>せんしゅうまつ</rt></ruby>、<ruby>私<rt>わたし</rt></ruby>はとても<ruby>楽<rt>たの</rt></ruby>しい<ruby>時間<rt>じかん</rt></ruby>を<ruby>過<rt>す</rt></ruby>ごしました。<ruby>土曜日<rt>どようび</rt></ruby>は、<ruby>朝早<rt>あさはや</rt></ruby>く<ruby>起<rt>お</rt></ruby>きて、<ruby>友達<rt>ともだち</rt></ruby>と<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>山<rt>やま</rt></ruby>へハイキングに<ruby>行<rt>い</rt></ruby>きました。<ruby>山道<rt>やまみち</rt></ruby>は<ruby>少<rt>すこ</rt></ruby>し<ruby>大変<rt>たいへん</rt></ruby>でしたが、<ruby>頂上<rt>ちょうじょう</rt></ruby>からの<ruby>景色<rt>けしき</rt></ruby>は<ruby>本当<rt>ほんとう</rt></ruby>に<ruby>素晴<rt>すば</rt></ruby>らしかったです。たくさんの<ruby>写真<rt>しゃしん</rt></ruby>を<ruby>撮<rt>と</rt></ruby>りました。<ruby>帰<rt>かえ</rt></ruby>る<ruby>途中<rt>とちゅう</rt></ruby>、<ruby>近<rt>ちか</rt></ruby>くのおいしいレストランで、<ruby>温<rt>あたた</rt></ruby>かいラーメンを<ruby>食<rt>た</rt></ruby>べました。<ruby>体<rt>からだ</rt></ruby>が<ruby>温<rt>あたた</rt></ruby>まりました。<br><br><ruby>日曜日<rt>にちようび</rt></ruby>は、<ruby>家<rt>いえ</rt></ruby>でゆっくりしました。<ruby>午後<rt>ごご</rt></ruby>は、<ruby>好<rt>す</rt></ruby>きな<ruby>音楽<rt>おんがく</rt></ruby>を<ruby>聴<rt>き</rt></ruby>きながら、<ruby>部屋<rt>へや</rt></ruby>の<ruby>掃除<rt>そうじ</rt></ruby>をしました。<ruby>夜<rt>よる</rt></ruby>は、<ruby>家族<rt>かぞく</rt></ruby>と<ruby>一緒<rt>いっしょ</rt></ruby>にテレビで<ruby>映画<rt>えいが</rt></ruby>を<ruby>見<rt>み</rt></ruby>ました。<ruby>感動的<rt>かんどうてき</rt></ruby>な<ruby>映画<rt>えいが</rt></ruby>だったので、<ruby>少<rt>すこ</rt></ruby>し<ruby>泣<rt>な</rt></ruby>いてしまいました。<br><br><ruby>来週<rt>らいしゅう</rt></ruby>の<ruby>週末<rt>しゅうまつ</rt></ruby>も、<ruby>何<rt>なに</rt></ruby>か<ruby>新<rt>あたら</rt></ruby>しいことをしたいと<ruby>思<rt>おも</rt></ruby>っています。</p>',
+                  chinese: '<p>上週末，我度過了非常愉快的時光。星期六，我一大早起床，和朋友一起去山上健行。山路雖然有點辛苦，但山頂的景色真的非常美麗。我拍了很多照片。回程路上，在附近一家美味的餐廳，吃了熱騰騰的拉麵。身體都暖和起來了。<br><br>星期天，我在家裡悠閒地度過。下午，我一邊聽著喜歡的音樂，一邊打掃房間。晚上，和家人一起在電視上看電影。因為是部感人的電影，我還偷偷地哭了一下。<br><br>下週的週末，我也想做一些新的事情。</p>'
+                },
+                phrases: [
+                  '【~ながら】 (V-masu形 + ながら): 一邊...一邊... (表示同時進行兩個動作)',
+                  '【~たいと思っています】 (V-tai形 + と思っています): 我想... (表示個人的願望或打算)',
+                  '【~が、~】 (V/A/Na + が, V/A/Na): 雖然...但是... (用於連接兩個具有轉折關係的句子)'
+                ],
+                vocabulary: [
+                  '週末（しゅうまつ）：週末',
+                  '過ごす（すごす）：度過（時間）',
+                  '大変（たいへん）：辛苦、嚴重',
+                  '景色（けしき）：景色',
+                  '感動的（かんどうてき）：感人的',
+                  '泣く（なく）：哭泣'
+                ],
+                questions: [
+                  { text: '日曜日の午後、話し手は何をしながら部屋の掃除をしましたか？', options: ['家族と話しながら', 'テレビを見ながら', '電話をしながら', '音楽を聴きながら'], answer: '音楽を聴きながら', explanation: '根據文章「音楽を聴きながら、部屋の掃除をしました」，可知答案是「一邊聽音樂一邊打掃」。', extendedInfo: '「～ながら」是表示兩個動作同時進行的句型。' },
+                  { text: '山の頂上からの景色について、話し手は何と言っていますか？', options: ['面白かったです', '寒かったです', '素晴らしかったです', '疲れました'], answer: '素晴らしかったです', explanation: '文章中提到「頂上からの景色は本当に素晴らしかったです」，意為「山頂的景色真的很棒」。', extendedInfo: '「素晴らしい」是讚美景色、事物時常用的形容詞。' },
+                  { text: '話し手が来週の週末にしたいと思っていることは何ですか？', options: ['山へ行くこと', '家でゆっくりすること', '何か新しいことをすること', '友達と会うこと'], answer: '何か新しいことをすること', explanation: '文章結尾提到「何か新しいことをしたいと思っています」，意為「想做一些新的事情」。', extendedInfo: '「～たいと思っています」用於表達個人的願望或打算。' }
+                ]
+              }
+            ]
+          },
+          {
+            title: '主題二：日常與自然（日常と自然）',
+            lessons: [
+              {
+                lessonTitle: '私の一日',
+                audioPath: 'path/to/audio/my_day.mp3',
+                subtitle: {
+                  japanese: '<p><ruby>朝<rt>あさ</rt></ruby>、<ruby>六<rt>ろく</rt></ruby><ruby>時<rt>じ</rt></ruby>に<ruby>起<rt>お</rt></ruby>きます。<ruby>顔<rt>かお</rt></ruby>を<ruby>洗<rt>あら</rt></ruby>って、<ruby>朝<rt>あさ</rt></ruby><ruby>ご飯<rt>はん</rt></ruby>を<ruby>食<rt>た</rt></ruby>べます。<ruby>七<rt>なな</rt></ruby><ruby>時<rt>じ</rt></ruby><ruby>半<rt>はん</rt></ruby>には<ruby>家<rt>いえ</rt></ruby>を<ruby>出<rt>で</rt></ruby>て、<ruby>電車<rt>でんしゃ</rt></ruby>で<ruby>学校<rt>がっこう</rt></ruby>へ<ruby>行<rt>い</rt></ruby>きます。<ruby>昼<rt>ひる</rt></ruby><ruby>ご飯<rt>はん</rt></ruby>は、よく<ruby>友達<rt>ともだち</rt></ruby>と<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>食堂<rt>しょくどう</rt></ruby>で<ruby>食<rt>た</rt></ruby>べます。<ruby>夕方<rt>ゆうがた</rt></ruby>、<ruby>家<rt>いえ</rt></ruby>に<ruby>帰<rt>かえ</rt></ruby>って、<ruby>宿題<rt>しゅくだい</rt></ruby>をします。<ruby>夜<rt>よる</rt></ruby>は、テレビを<ruby>見<rt>み</rt></ruby>たり、<ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>んだりします。そして、<ruby>十一<rt>じゅういち</rt></ruby><ruby>時<rt>じ</rt></ruby>に<ruby>寝<rt>ね</rt></ruby>ます。</p>',
+                  chinese: '<p>早上六點起床。洗臉後吃早餐。七點半出門，搭電車去學校。午餐常和朋友一起在食堂吃。傍晚回到家，寫作業。晚上，看看電視或讀書。然後，十一點睡覺。</p>'
+                },
+                phrases: [
+                  '【~に起きます】 (時間 + に起きます): 在...點起床',
+                  '【~に出ます】 (地點 + を出ます): 離開...、從...出門',
+                  '【~たり、~たりします】 (V-tari形 + 、...V-tari形 + します): 做...、做...等（列舉動作）'
+                ],
+                vocabulary: [
+                  '朝（あさ）：早上',
+                  '電車（でんしゃ）：電車',
+                  '食堂（しょくどう）：食堂、餐廳',
+                  '宿題（しゅくだい）：作業',
+                  '寝る（ねる）：睡覺'
+                ],
+                questions: [
+                  { text: '話し手は毎日何時に起きますか？', options: ['7時', '7時半', '6時', '11時'], answer: '6時', explanation: '文章第一句提到「朝、六時に起きます」，意思是「早上六點起床」。', extendedInfo: '「～に起きます」表示起床的時間。' },
+                  { text: '話し手はどのように学校へ行きますか？', options: ['歩いて', '電車で', '車で', 'バスで'], answer: '電車で', explanation: '文章中提到「電車で学校へ行きます」，意思是「搭電車去學校」。', extendedInfo: '「～で」用於表示交通工具。' },
+                  { text: '夜に話し手がする行動として正しいものは何ですか？', options: ['宿題をする', '友達と会う', 'テレビを見たり、本を読んだりする', '料理をする'], answer: 'テレビを見たり、本を読んだりする', explanation: '文章中提到「夜は、テレビを見たり、本を読んだりします」，意思是「晚上，看看電視或讀書」。', extendedInfo: '「～たり、～たりします」用於列舉多個動作。' }
+                ]
+              },
+              {
+                lessonTitle: '日本の四季',
+                audioPath: 'path/to/audio/japan_seasons.mp3',
+                subtitle: {
+                  japanese: '<p><ruby>日本<rt>にほん</rt></ruby>には<ruby>美<rt>うつく</rt></ruby>しい<ruby>四季<rt>しき</rt></ruby>があります。<ruby>春<rt>はる</rt></ruby>は<ruby>桜<rt>さくら</rt></ruby>の<ruby>花<rt>はな</rt></ruby>がとてもきれいです。<ruby>夏<rt>なつ</rt></ruby>は<ruby>暑<rt>あつ</rt></ruby>いですが、お<ruby>祭<rt>まつ</rt></ruby>りや<ruby>花火<rt>はなび</rt></ruby><ruby>大会<rt>たいかい</rt></ruby>がたくさんあります。<ruby>秋<rt>あき</rt></ruby>は<ruby>紅葉<rt>こうよう</rt></ruby>が<ruby>赤<rt>あか</rt></ruby>や<ruby>黄色<rt>きいろ</rt></ruby>になって、とても<ruby>美<rt>うつく</rt></ruby>しいです。<ruby>冬<rt>ふゆ</rt></ruby>は<ruby>寒<rt>さむ</rt></ruby>くなりますが、<ruby>雪<rt>ゆき</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>ると、<ruby>雪景色<rt>ゆきげしき</rt></ruby>が<ruby>楽<rt>たの</rt></ruby>しめます。</p>',
+                  chinese: '<p>日本有美麗的四季。春天櫻花非常漂亮。雖然夏天很熱，但有很多祭典和煙火大會。秋天楓葉變成紅色和黃色，非常美麗。冬天會變冷，但下雪時，可以欣賞雪景。</p>'
+                },
+                phrases: [
+                  '【~があります】 (N + があります): 有...（表示存在）',
+                  '【~になります】 (N + になります): 變成...、成為...',
+                  '【~することができます】 (V-ru形 + ることができます): 能夠做...、可以做...'
+                ],
+                vocabulary: [
+                  '四季（しき）：四季',
+                  '春（はる）：春天',
+                  '夏（なつ）：夏天',
+                  '秋（あき）：秋天',
+                  '冬（ふゆ）：冬天',
+                  '美しい（うつくしい）：美麗的'
+                ],
+                questions: [
+                  { text: '日本に最も美しい桜の花が見られる季節はどれですか？', options: ['春', '夏', '秋', '冬'], answer: '春', explanation: '文章中提到「春は桜の花がとてもきれいです」，意思是「春天櫻花非常漂亮」。', extendedInfo: '「桜」（さくら）是櫻花的意思，是日本春天的代表景物。' },
+                  { text: '日本の夏について、正しいものはどれですか？', options: ['とても寒い', '雪が降る', '花火大会がたくさんある', '紅葉が美しい'], answer: '花火大会がたくさんある', explanation: '文章中提到「夏は暑いですが、お祭りや花火大会がたくさんあります」，意思是「雖然夏天很熱，但有很多祭典和煙火大會」。', extendedInfo: '「～が、～」的句型表示轉折關係。' },
+                  { text: '冬に雪が降ったときに楽しめるものは何ですか？', options: ['海水浴', '紅葉狩り', '花火', '雪景色'], answer: '雪景色', explanation: '文章結尾提到「雪が降ると、雪景色が楽しめます」，意為「下雪時，可以欣賞雪景」。', extendedInfo: '「雪景色」（ゆきげしき）是指雪景。' }
+                ]
+              }
+            ]
+          }
+        ]);
+        
+        // 文法區塊的結構化內容
+        const grammarData = ref([
+          {
+            categoryName: '句型與助詞',
+            points: [
+              {
+                point: '～てください',
+                reading: 'te kudasai',
+                meaning: '請...（表示請求或命令，語氣較為禮貌）',
+                examples: [
+                  { text: 'すみません、このドアを開けてください。', translation: '不好意思，請打開這扇門。' },
+                  { text: 'ゆっくり話してください。', translation: '請慢慢說。' }
+                ],
+                quiz: [
+                  { text: '想要請求朋友「幫忙拿一下這個行李」，日文應該怎麼說？', options: ['その荷物を持ってください。', 'その荷物を持ってあげます。', 'その荷物を持ちましょうか。', 'その荷物を持ちたいです。'], answer: 'その荷物を持ってください。', explanation: '「～てください」用於請求對方做某事。', extendedInfo: '「持って」是動詞「持つ」（拿、帶）的て形。' }
+                ]
+              },
+              {
+                point: '～てもいいです',
+                reading: 'te mo ii desu',
+                meaning: '可以做...、做...也沒關係（表示許可）',
+                examples: [
+                  { text: 'ここで写真を撮ってもいいですか？', translation: '可以在這裡拍照嗎？' },
+                  { text: 'もう帰ってもいいですよ。', translation: '已經可以回去了喔。' }
+                ],
+                quiz: [
+                  { text: '「可以在這裡吃東西嗎？」的正確日文是？', options: ['ここで食べます。', 'ここで食べてはいけません。', 'ここで食べてもいいですか？', 'ここで食べなくてもいいです。'], answer: 'ここで食べてもいいですか？', explanation: '「～てもいいですか」用於詢問許可。', extendedInfo: '「食べて」是動詞「食べる」（吃）的て形。' }
+                ]
+              },
+              {
+                point: '～てはいけません',
+                reading: 'te wa ikemasen',
+                meaning: '不可以...、不准...（表示禁止）',
+                examples: [
+                  { text: 'ここで泳いではいけません。', translation: '在這裡不可以游泳。' },
+                  { text: '図書館で話してはいけません。', translation: '在圖書館不可以說話。' }
+                ],
+                quiz: [
+                  { text: '「請不要在這裡抽煙」的正確翻譯是？', options: ['ここでタバコを吸ってもいいです。', 'ここでタバコを吸わなければなりません。', 'ここでタバコを吸ってはだめです。', 'ここでタバコを吸ってはいけません。'], answer: 'ここでタバコを吸ってはいけません。', explanation: '「～てはいけません」是表示強烈禁止的句型。', extendedInfo: '「吸う」（すう）是「吸」的意思，て形為「吸って」。' }
+                ]
+              }
+            ]
+          },
+          {
+            categoryName: '狀態與目的',
+            points: [
+              {
+                point: '～ながら',
+                reading: 'nagara',
+                meaning: '一邊...一邊...（表示同時進行兩個動作）',
+                examples: [
+                  { text: '音楽を聴きながら、料理をします。', translation: '我一邊聽音樂一邊做菜。' },
+                  { text: 'テレビを見ながら、ご飯を食べます。', translation: '我一邊看電視一邊吃飯。' }
+                ],
+                quiz: [
+                  { text: '請問以下哪句話的意思是「一邊聽廣播一邊開車」？', options: ['ラジオを聞きません。', 'ラジオを聞きながら、運転します。', 'ラジオを聞くために、運転します。', 'ラジオを聞きたいです。'], answer: 'ラジオを聞きながら、運転します。', explanation: '「～ながら」用於連接兩個同時進行的動作。', extendedInfo: '動詞ます形後面接「ながら」。' }
+                ]
+              },
+              {
+                point: '～ために',
+                reading: 'tame ni',
+                meaning: '為了...（表示目的）',
+                examples: [
+                  { text: '日本語を勉強するために、日本へ行きます。', translation: '為了學習日語，我會去日本。' },
+                  { text: '健康のために、毎日運動します。', translation: '為了健康，我每天運動。' }
+                ],
+                quiz: [
+                  { text: '「為了學日語，我買了這本書。」的正確日文是？', options: ['日本語を勉強して、この本を買いました。', '日本語を勉強するため、この本を買いました。', '日本語を勉強しない、この本を買いました。', '日本語を勉強したい、この本を買いました。'], answer: '日本語を勉強するため、この本を買いました。', explanation: '「～ために」用於表示目的。', extendedInfo: '動詞原形後面接「ために」。' }
+                ]
+              }
+            ]
+          },
+          {
+            categoryName: '願望與打算',
+            points: [
+              {
+                point: '～たいと思っています',
+                reading: 'tai to omotte imasu',
+                meaning: '我想...（表示個人的願望或打算）',
+                examples: [
+                  { text: '来週の週末も、何か新しいことをしたいと思っています。', translation: '下週的週末，我也想做一些新的事情。' },
+                  { text: '将来、医者になりたいと思っています。', translation: '將來，我想成為一名醫生。' }
+                ],
+                quiz: [
+                  { text: '請問以下哪一句是在表達「我想要環遊世界」這個願望？', options: ['世界中を旅行に行きます。', '世界中を旅行に行きたいです。', '世界中を旅行に行きたいと思っています。', '世界中を旅行に行ったことがあります。'], answer: '世界中を旅行に行きたいと思っています。', explanation: '「～たいと思っています」用於表達較為長遠的願望或打算。', extendedInfo: '「～たいです」也可以表達願望，但「～たいと思っています」語氣更委婉，強調「心中一直想著」。' }
+                ]
+              }
+            ]
+          }
+        ]);
+
+        // 新增閱讀區塊的內容
+        const readingData = ref([
+          {
+            lessonTitle: 'お寺のアルバイト',
+            japaneseText: '<p><ruby>私<rt>わたし</rt></ruby>は<ruby>今<rt>いま</rt></ruby>、<ruby>大学<rt>だいがく</rt></ruby>の<ruby>近<rt>ちか</rt></ruby>くにあるお<ruby>寺<rt>てら</rt></ruby>でアルバイトをしています。お<ruby>寺<rt>てら</rt></ruby>の<ruby>仕事<rt>しごと</rt></ruby>は<ruby>朝早<rt>あさはや</rt></ruby>いですが、とても<ruby>静<rt>しず</rt></ruby>かで<ruby>気持<rt>きも</rt></ruby>ちがいいです。<ruby>毎日<rt>まいにち</rt></ruby>、お<ruby>寺<rt>てら</rt></ruby>の<ruby>掃除<rt>そうじ</rt></ruby>をしたり、<ruby>庭<rt>にわ</rt></ruby>の<ruby>手入<rt>てい</rt></ruby>れをしたりしています。お<ruby>客<rt>きゃく</rt></ruby>さんが<ruby>来<rt>き</rt></ruby>たら、お<ruby>寺<rt>てら</rt></ruby>の<ruby>歴史<rt>れきし</rt></ruby>や<ruby>仏像<rt>ぶつぞう</rt></ruby>について<ruby>説明<rt>せつめい</rt></ruby>することも<ruby>楽<rt>たの</rt></ruby>しいです。このアルバイトは<ruby>お金<rt>かね</rt></ruby>をもらうだけでなく、<ruby>日本<rt>にほん</rt></ruby>の<ruby>文化<rt>ぶんか</rt></ruby>を<ruby>深<rt>ふか</rt></ruby>く<ruby>知<rt>し</rt></ruby>ることができるので、とても<ruby>良<rt>よ</rt></ruby>い<ruby>経験<rt>けいけん</rt></ruby>だと<ruby>思<rt>おも</rt></ruby>います。</p>',
+            chineseText: '<p>我現在在大學附近的一間寺廟打工。寺廟的工作雖然要很早起，但非常安靜，感覺很好。我每天打掃寺廟、整理庭院。如果有客人來，我也很開心能為他們介紹寺廟的歷史和佛像。這份打工不僅能賺錢，還能深入了解日本文化，我覺得是個很棒的經驗。</p>',
+            questions: [
+              { text: '話し手はどこでアルバイトをしていますか？', options: ['大学の食堂', '駅の近くの店', 'お寺', '図書館'], answer: 'お寺', explanation: '文章開頭提到「私は今、大学の近くにあるお寺でアルバイトをしています」，可知是在寺廟打工。' },
+              { text: 'アルバイトで何をするのが一番楽しいと書いてありますか？', options: ['掃除をすること', '庭の手入れをすること', 'お客様に説明すること', '朝早く起きること'], answer: 'お客様に説明すること', explanation: '文章中提到「お客様が来たら、お寺の歴史や仏像について説明することも楽しいです」，意思是為客人介紹歷史和佛像也很有趣。' },
+              { text: '話し手はこのアルバイトをどう思っていますか？', options: ['お金が少ない', '少し大変だ', '良い経験だ', 'つまらない'], answer: '良い経験だ', explanation: '文章結尾提到「良い経験だと思います」，意思是認為這是個很好的經驗。' }
+            ]
+          },
+          {
+            lessonTitle: '新しいカフェ',
+            japaneseText: '<p><ruby>私<rt>わたし</rt></ruby>の<ruby>家<rt>いえ</rt></ruby>の<ruby>前<rt>まえ</rt></ruby>に<ruby>新<rt>あたら</rt></ruby>しいカフェができました。とてもおしゃれで、<ruby>毎日<rt>まいにち</rt></ruby><ruby>多<rt>おお</rt></ruby>くの<ruby>人<rt>ひと</rt></ruby>が<ruby>行<rt>い</rt></ruby>っています。<ruby>私<rt>わたし</rt></ruby>も<ruby>先日<rt>せんじつ</rt></ruby>、<ruby>友達<rt>ともだち</rt></ruby>と<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>行<rt>い</rt></ruby>ってみました。カフェの<ruby>中<rt>なか</rt></ruby>には<ruby>大<rt>おお</rt></ruby>きな<ruby>窓<rt>まど</rt></ruby>があって、<ruby>外<rt>そと</rt></ruby>の<ruby>景色<rt>けしき</rt></ruby>がよく<ruby>見<rt>み</rt></ruby>えます。コーヒーもとてもおいしかったし、ケーキも<ruby>手作<rt>てづく</rt></ruby>りで<ruby>美味<rt>おい</rt></ruby>しかったです。また、<ruby>お店<rt>おみせ</rt></ruby>の<ruby>人<rt>ひと</rt></rt>がとても<ruby>親切<rt>しんせつ</rt></ruby>だったので、とてもいい<ruby>気持<rt>きも</rt></ruby>ちになりました。<ruby>今度<rt>こんど</rt></ruby>は、<ruby>一人<rt>ひとり</rt></ruby>で<ruby>行<rt>い</rt></ruby>って、ゆっくり<ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>みたいです。</p>',
+            chineseText: '<p>我家前面開了一間新的咖啡廳。它非常時尚，每天都有很多人去。前幾天我也和朋友一起去試了一下。咖啡廳裡有扇大窗戶，可以清楚看到外面的景色。咖啡非常好喝，手工製作的蛋糕也很美味。而且，店員們非常親切，讓我心情非常好。下次，我想自己一個人去，慢慢地看書。</p>',
+            questions: [
+              { text: '話し手は新しいカフェに誰と行きましたか？', options: ['家族と', '友達と', '一人で', '店員と'], answer: '友達と', explanation: '文章中提到「私も先日、友達と一緒にいってみました」，可知是和朋友一起去的。' },
+              { text: 'このカフェについて正しい説明はどれですか？', options: ['食べ物は売っていない', '窓が小さくて暗い', '店員がとても親切だ', '家から遠い'], answer: '店員がとても親切だ', explanation: '文章中提到「お店の人がとても親切だったので」，意為店員很親切。' },
+              { text: '話し手は次にこのカフェで何をしたいですか？', options: ['友達と話すこと', '一人で本を読むこと', 'ケーキを作ること', '外の景色を見ること'], answer: '一人で本を読むこと', explanation: '文章結尾提到「今度は、一人で行って、ゆっくり本を読みたいです」，意思是下次想一個人去慢慢看書。' }
+            ]
+          }
+        ]);
+
+
+        // 追蹤目前的畫面狀態：'home', 'listening', 'listeningDetails', 'reading', 'readingDetails', 'flashcards', 'review', 'grammar'
+        const currentView = ref('home');
+        // 追蹤目前選擇的聽力課程物件
+        const currentListeningLesson = ref(null);
+        // 追蹤目前選擇的閱讀文章物件
+        const currentReadingArticle = ref(null);
+        // 追蹤目前打開的文法點，用於控制收合
+        const activeGrammarPoint = ref(null);
+        // 追蹤目前打開的文法測驗
+        const activeGrammarQuiz = ref(null);
+
+        // 追蹤測驗結果
+        const quizResults = reactive({});
+        const showResults = ref(false);
+
+        // 新增的狀態：字卡和錯題
+        const flashcards = ref([]);
+        const incorrectQuestions = ref([]);
+        const flashcardFilter = ref('');
+        const reviewFilter = ref('');
+        const hasReviewedQuiz = ref(false); // 追蹤使用者是否完成測驗
+
+        // 計算學習進度，作為儀表板的參考
+        const totalLessons = computed(() => {
+          return listeningData.value.reduce((sum, theme) => sum + theme.lessons.length, 0);
+        });
+
+        // 導覽至不同的畫面
+        const navigateTo = (viewName, item = null) => {
+          currentView.value = viewName;
+          resetQuizState();
+          if (viewName === 'listeningDetails' && item) {
+            currentListeningLesson.value = item;
+          } else if (viewName === 'readingDetails' && item) {
+            currentReadingArticle.value = item;
+          } else if (viewName === 'grammar') {
+            activeGrammarPoint.value = null;
+            activeGrammarQuiz.value = null;
+          }
+        };
+
+        // 重置測驗狀態
+        const resetQuizState = () => {
+          showResults.value = false;
+          hasReviewedQuiz.value = false;
+          for (let key in quizResults) {
+              delete quizResults[key];
+          }
+        };
+        
+        // 切換文法點的顯示
+        const toggleGrammarPoint = (point) => {
+          activeGrammarPoint.value = activeGrammarPoint.value === point ? null : point;
+        };
+
+        // 切換文法測驗的顯示
+        const toggleGrammarQuiz = (point) => {
+          activeGrammarQuiz.value = activeGrammarQuiz.value === point ? null : point;
+        };
+
+        // 新增：加入字卡功能
+        const addFlashcard = (vocab) => {
+            const isExist = flashcards.value.some(card => card === vocab);
+            if (!isExist) {
+                flashcards.value.push(vocab);
+                // 簡易通知
+                const notification = document.createElement('div');
+                notification.textContent = `已將「${vocab.split('：')[0]}」加入字卡區！`;
+                notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-xl animate-fade-in-up';
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                  notification.classList.add('animate-fade-out');
+                  setTimeout(() => notification.remove(), 500);
+                }, 2000);
+            }
+        };
+
+        // 新增：處理測驗結果並收集錯題
+        const checkQuizAnswers = (questions, prefix) => {
+          showResults.value = true;
+          hasReviewedQuiz.value = true;
+          let score = 0;
+          
+          incorrectQuestions.value = incorrectQuestions.value.filter(q => q.prefix !== prefix);
+
+          questions.forEach((q, index) => {
+            const selectedOption = document.querySelector(`input[name="${prefix}-${index}"]:checked`);
+            const isCorrect = selectedOption && selectedOption.value === q.answer;
+            
+            quizResults[`${prefix}-${index}`] = {
+              correct: isCorrect,
+              selected: selectedOption ? selectedOption.value : null,
+              answer: q.answer
+            };
+
+            if (isCorrect) {
+              score++;
+            } else {
+              incorrectQuestions.value.push({
+                prefix: prefix,
+                questionText: q.text,
+                correctAnswer: q.answer,
+                explanation: q.explanation,
+                extendedInfo: q.extendedInfo
+              });
+            }
+          });
+          
+          quizResults.score = score;
+        };
+        
+        // 根據搜尋詞彙篩選字卡
+        const filteredFlashcards = computed(() => {
+          const filterText = flashcardFilter.value.toLowerCase().trim();
+          if (!filterText) {
+            return flashcards.value;
+          }
+          return flashcards.value.filter(card => card.toLowerCase().includes(filterText));
+        });
+
+        // 根據搜尋詞彙篩選錯題
+        const filteredIncorrectQuestions = computed(() => {
+          const filterText = reviewFilter.value.toLowerCase().trim();
+          if (!filterText) {
+            return incorrectQuestions.value;
+          }
+          return incorrectQuestions.value.filter(q => 
+            q.questionText.toLowerCase().includes(filterText) ||
+            q.correctAnswer.toLowerCase().includes(filterText) ||
+            q.explanation.toLowerCase().includes(filterText) ||
+            q.extendedInfo.toLowerCase().includes(filterText)
+          );
+        });
+
+        return {
+          listeningData,
+          grammarData,
+          readingData,
+          currentView,
+          currentListeningLesson,
+          currentReadingArticle,
+          activeGrammarPoint,
+          activeGrammarQuiz,
+          quizResults,
+          showResults,
+          flashcards,
+          incorrectQuestions,
+          flashcardFilter,
+          reviewFilter,
+          totalLessons,
+          hasReviewedQuiz,
+          navigateTo,
+          toggleGrammarPoint,
+          toggleGrammarQuiz,
+          addFlashcard,
+          checkQuizAnswers,
+          filteredFlashcards,
+          filteredIncorrectQuestions
+        };
+      },
+      template: `
+        <!-- 導覽列 -->
+        <header class="bg-indigo-800 text-white shadow-lg sticky top-0 z-50">
+          <nav class="container mx-auto flex items-center justify-between py-4 px-6">
+            <a href="#" class="text-2xl font-bold" @click.prevent="navigateTo('home')">N4 日本語</a>
+            <div class="flex items-center space-x-6">
+              <button @click.prevent="navigateTo('home')" class="py-2 px-4 rounded-full transition-colors duration-300 hover:bg-indigo-700">首頁</button>
+              <button @click.prevent="navigateTo('listening')" class="py-2 px-4 rounded-full transition-colors duration-300 hover:bg-indigo-700">聽力</button>
+              <button @click.prevent="navigateTo('reading')" class="py-2 px-4 rounded-full transition-colors duration-300 hover:bg-indigo-700">閱讀</button>
+              <button @click.prevent="navigateTo('grammar')" class="py-2 px-4 rounded-full transition-colors duration-300 hover:bg-indigo-700">文法</button>
+              <button @click.prevent="navigateTo('flashcards')" class="py-2 px-4 rounded-full transition-colors duration-300 hover:bg-indigo-700">字卡</button>
+              <button @click.prevent="navigateTo('review')" class="py-2 px-4 rounded-full transition-colors duration-300 hover:bg-indigo-700">複習</button>
+            </div>
+          </nav>
+        </header>
+
+        <!-- 主要內容區塊 -->
+        <main class="container mx-auto px-4 py-8 md:py-12 min-h-[calc(100vh-140px)]">
+          
+          <!-- 畫面切換：首頁儀表板 -->
+          <div v-if="currentView === 'home'" class="flex flex-col items-center text-center">
+            <div class="my-10 md:my-16">
+              <h1 class="text-4xl md:text-5xl font-extrabold text-indigo-800 mb-4">歡迎來到 N4 日語全面訓練站</h1>
+              <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl">
+                專為準備日語能力試驗 N4 級別的您設計。透過系統化的聽力、閱讀、文法訓練與互動測驗，幫助您有效率地掌握關鍵知識點，自信迎戰考試！
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 w-full max-w-4xl">
+              <div @click="navigateTo('listening')" class="bg-white p-6 rounded-xl card-shadow cursor-pointer transition transform hover:-translate-y-1">
+                <i class="fas fa-headphones-alt text-4xl text-indigo-600 mb-4"></i>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">聽力訓練</h3>
+                <p class="text-slate-500">練習聽力，提升語感與理解能力。</p>
+              </div>
+              <div @click="navigateTo('reading')" class="bg-white p-6 rounded-xl card-shadow cursor-pointer transition transform hover:-translate-y-1">
+                <i class="fas fa-book-reader text-4xl text-indigo-600 mb-4"></i>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">閱讀訓練</h3>
+                <p class="text-slate-500">閱讀N4級別文章，強化閱讀理解。</p>
+              </div>
+              <div @click="navigateTo('grammar')" class="bg-white p-6 rounded-xl card-shadow cursor-pointer transition transform hover:-translate-y-1">
+                <i class="fas fa-edit text-4xl text-indigo-600 mb-4"></i>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">文法訓練</h3>
+                <p class="text-slate-500">系統學習N4核心文法，並進行測驗。</p>
+              </div>
+              <div @click="navigateTo('flashcards')" class="bg-white p-6 rounded-xl card-shadow cursor-pointer transition transform hover:-translate-y-1">
+                <i class="fas fa-layer-group text-4xl text-teal-600 mb-4"></i>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">我的字卡</h3>
+                <p class="text-slate-500">複習您收集的詞彙與片語，強化記憶。</p>
+              </div>
+              <div @click="navigateTo('review')" class="bg-white p-6 rounded-xl card-shadow cursor-pointer transition transform hover:-translate-y-1">
+                <i class="fas fa-redo text-4xl text-amber-600 mb-4"></i>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">錯題回顧</h3>
+                <p class="text-slate-500">重新檢視測驗中答錯的題目，避免再次犯錯。</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 畫面切換：聽力總覽 -->
+          <div v-if="currentView === 'listening'">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-800 mb-8 text-center">聽力訓練</h1>
+            <div class="space-y-8">
+              <div v-for="(theme, themeIndex) in listeningData" :key="themeIndex" class="bg-white p-6 rounded-xl card-shadow">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4 border-b-2 border-slate-200 pb-2">{{ theme.title }}</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div 
+                    v-for="(lesson, lessonIndex) in theme.lessons" 
+                    :key="lessonIndex" 
+                    @click="navigateTo('listeningDetails', lesson)"
+                    class="p-5 bg-indigo-50 rounded-lg border border-indigo-200 transition-all duration-300 hover:bg-indigo-100 hover:shadow-md cursor-pointer"
+                  >
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-1">{{ lesson.lessonTitle }}</h3>
+                    <p class="text-sm text-slate-500">聽力練習，{{ lesson.vocabulary.length }}個詞彙</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 畫面切換：聽力詳情 -->
+          <div v-if="currentView === 'listeningDetails'" class="bg-white p-6 md:p-10 rounded-xl card-shadow">
+            <button @click="navigateTo('listening')" class="text-indigo-600 hover:text-indigo-800 transition mb-6 md:mb-8 text-sm md:text-base">
+              <i class="fas fa-arrow-left mr-2"></i>返回聽力列表
+            </button>
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-800 mb-4">{{ currentListeningLesson.lessonTitle }}</h1>
+            
+            <!-- 聽力與字幕區 -->
+            <div class="bg-slate-50 p-6 rounded-lg mb-8">
+              <h2 class="text-xl font-bold text-indigo-700 mb-4"><i class="fas fa-headphones mr-2"></i>聽力與字幕</h2>
+              <audio controls :src="currentListeningLesson.audioPath" class="w-full mb-4">
+                您的瀏覽器不支援 HTML5 音頻。
+              </audio>
+              <div class="bg-white p-4 rounded-md border border-slate-200">
+                <div v-html="currentListeningLesson.subtitle.japanese" class="text-lg text-slate-700 mb-2"></div>
+                <p class="text-base text-slate-500 mt-2">（中文：{{ currentListeningLesson.subtitle.chinese }}）</p>
+              </div>
+            </div>
+
+            <!-- 句型與詞彙區 -->
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+              <!-- 句型區塊 -->
+              <div>
+                <h2 class="text-xl font-bold text-indigo-700 mb-4"><i class="fas fa-comment-dots mr-2"></i>常用句型</h2>
+                <ul class="space-y-3">
+                  <li v-for="(phrase, index) in currentListeningLesson.phrases" :key="'p' + index" class="p-3 bg-indigo-50 rounded-lg text-slate-700 border border-indigo-200">
+                    {{ phrase }}
+                  </li>
+                </ul>
+              </div>
+              <!-- 詞彙區塊 -->
+              <div>
+                <h2 class="text-xl font-bold text-indigo-700 mb-4"><i class="fas fa-list-ul mr-2"></i>核心詞彙</h2>
+                <ul class="space-y-3">
+                  <li v-for="(vocab, index) in currentListeningLesson.vocabulary" :key="'v' + index" class="p-3 bg-teal-50 rounded-lg flex justify-between items-center text-slate-700 border border-teal-200">
+                    <span>{{ vocab }}</span>
+                    <button @click="addFlashcard(vocab)" class="bg-teal-600 hover:bg-teal-700 text-white text-sm py-1 px-3 rounded-full transition-colors">
+                      <i class="fas fa-plus mr-1"></i>字卡
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 測驗區塊 -->
+            <div>
+              <h2 class="text-xl font-bold text-indigo-700 mb-4"><i class="fas fa-graduation-cap mr-2"></i>測驗：請選擇正確答案</h2>
+              <form @submit.prevent="checkQuizAnswers(currentListeningLesson.questions, 'listening')" class="space-y-6">
+                <div v-for="(question, qIndex) in currentListeningLesson.questions" :key="qIndex" class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                  <p class="font-semibold text-lg text-slate-800 mb-4">{{ qIndex + 1 }}. {{ question.text }}</p>
+                  <div class="space-y-3">
+                    <label 
+                      v-for="(option, oIndex) in question.options" 
+                      :key="'q' + qIndex + 'o' + oIndex" 
+                      :for="'listening-' + qIndex + '-' + oIndex"
+                      :class="{ 
+                        'quiz-correct-option': showResults && quizResults['listening-' + qIndex] && option === quizResults['listening-' + qIndex].answer, 
+                        'quiz-incorrect-option': showResults && quizResults['listening-' + qIndex] && option === quizResults['listening-' + qIndex].selected && option !== quizResults['listening-' + qIndex].answer 
+                      }"
+                      class="block p-3 rounded-lg border border-gray-300 cursor-pointer transition-colors duration-200 quiz-option"
+                    >
+                      <input 
+                        type="radio" 
+                        :id="'listening-' + qIndex + '-' + oIndex" 
+                        :name="'listening-' + qIndex" 
+                        :value="option" 
+                        :disabled="showResults"
+                        class="mr-3"
+                      >
+                      <span class="text-slate-700">{{ option }}</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="flex justify-center mt-6">
+                  <button type="submit" :disabled="showResults" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 disabled:bg-indigo-400">
+                    確認答案
+                  </button>
+                </div>
+              </form>
+
+              <div v-if="showResults" class="mt-8 text-center bg-slate-100 p-6 rounded-lg border border-slate-200">
+                <h3 class="text-2xl font-bold text-slate-800 mb-4">測驗結果</h3>
+                <p class="text-xl text-indigo-700 font-semibold mb-2">總分：{{ quizResults.score }} / {{ currentListeningLesson.questions.length }}</p>
+                <p v-if="quizResults.score === currentListeningLesson.questions.length" class="text-green-600 text-lg">恭喜您，全部答對！</p>
+                <p v-else class="text-red-600 text-lg">您有答錯的題目，請前往<a @click.prevent="navigateTo('review')" class="underline cursor-pointer ml-1">錯題回顧</a>區複習。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 畫面切換：閱讀總覽 -->
+          <div v-if="currentView === 'reading'">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-800 mb-8 text-center">閱讀訓練</h1>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div 
+                v-for="(article, index) in readingData" 
+                :key="index" 
+                @click="navigateTo('readingDetails', article)"
+                class="p-5 bg-green-50 rounded-lg border border-green-200 transition-all duration-300 hover:bg-green-100 hover:shadow-md cursor-pointer"
+              >
+                <h3 class="text-xl font-semibold text-green-700 mb-1">{{ article.lessonTitle }}</h3>
+                <p class="text-sm text-slate-500">閱讀理解練習</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 畫面切換：閱讀詳情 -->
+          <div v-if="currentView === 'readingDetails'" class="bg-white p-6 md:p-10 rounded-xl card-shadow">
+            <button @click="navigateTo('reading')" class="text-green-600 hover:text-green-800 transition mb-6 md:mb-8 text-sm md:text-base">
+              <i class="fas fa-arrow-left mr-2"></i>返回閱讀列表
+            </button>
+            <h1 class="text-3xl md:text-4xl font-bold text-green-800 mb-4">{{ currentReadingArticle.lessonTitle }}</h1>
+
+            <!-- 閱讀文章區 -->
+            <div class="bg-slate-50 p-6 rounded-lg mb-8">
+              <h2 class="text-xl font-bold text-green-700 mb-4"><i class="fas fa-file-alt mr-2"></i>文章內容</h2>
+              <div class="bg-white p-4 rounded-md border border-slate-200">
+                <div v-html="currentReadingArticle.japaneseText" class="text-lg text-slate-700 mb-2 leading-relaxed"></div>
+                <p class="text-base text-slate-500 mt-4">（中文：{{ currentReadingArticle.chineseText }}）</p>
+              </div>
+            </div>
+
+            <!-- 測驗區塊 -->
+            <div>
+              <h2 class="text-xl font-bold text-green-700 mb-4"><i class="fas fa-graduation-cap mr-2"></i>測驗：請選擇正確答案</h2>
+              <form @submit.prevent="checkQuizAnswers(currentReadingArticle.questions, 'reading')" class="space-y-6">
+                <div v-for="(question, qIndex) in currentReadingArticle.questions" :key="qIndex" class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                  <p class="font-semibold text-lg text-slate-800 mb-4">{{ qIndex + 1 }}. {{ question.text }}</p>
+                  <div class="space-y-3">
+                    <label 
+                      v-for="(option, oIndex) in question.options" 
+                      :key="'q' + qIndex + 'o' + oIndex" 
+                      :for="'reading-' + qIndex + '-' + oIndex"
+                      :class="{ 
+                        'quiz-correct-option': showResults && quizResults['reading-' + qIndex] && option === quizResults['reading-' + qIndex].answer, 
+                        'quiz-incorrect-option': showResults && quizResults['reading-' + qIndex] && option === quizResults['reading-' + qIndex].selected && option !== quizResults['reading-' + qIndex].answer 
+                      }"
+                      class="block p-3 rounded-lg border border-gray-300 cursor-pointer transition-colors duration-200 quiz-option"
+                    >
+                      <input 
+                        type="radio" 
+                        :id="'reading-' + qIndex + '-' + oIndex" 
+                        :name="'reading-' + qIndex" 
+                        :value="option" 
+                        :disabled="showResults"
+                        class="mr-3"
+                      >
+                      <span class="text-slate-700">{{ option }}</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="flex justify-center mt-6">
+                  <button type="submit" :disabled="showResults" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 disabled:bg-green-400">
+                    確認答案
+                  </button>
+                </div>
+              </form>
+
+              <div v-if="showResults" class="mt-8 text-center bg-slate-100 p-6 rounded-lg border border-slate-200">
+                <h3 class="text-2xl font-bold text-slate-800 mb-4">測驗結果</h3>
+                <p class="text-xl text-green-700 font-semibold mb-2">總分：{{ quizResults.score }} / {{ currentReadingArticle.questions.length }}</p>
+                <p v-if="quizResults.score === currentReadingArticle.questions.length" class="text-green-600 text-lg">恭喜您，全部答對！</p>
+                <p v-else class="text-red-600 text-lg">您有答錯的題目，請前往<a @click.prevent="navigateTo('review')" class="underline cursor-pointer ml-1">錯題回顧</a>區複習。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 畫面切換：文法訓練區 -->
+          <div v-if="currentView === 'grammar'">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-800 mb-8 text-center">N4文法訓練區</h1>
+            <div class="max-w-4xl mx-auto space-y-8">
+              <div v-for="(category, catIndex) in grammarData" :key="catIndex" class="bg-white p-6 rounded-xl card-shadow">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4 border-b-2 border-slate-200 pb-2">{{ category.categoryName }}</h2>
+                
+                <div v-for="(point, pIndex) in category.points" :key="pIndex" class="border border-slate-200 rounded-lg overflow-hidden mb-4">
+                  <!-- 文法點標題，可點擊收合 -->
+                  <div @click="toggleGrammarPoint(point.point)" class="flex justify-between items-center p-4 bg-indigo-50 cursor-pointer hover:bg-indigo-100 transition-colors">
+                    <h3 class="text-xl font-semibold text-indigo-700">{{ point.point }}</h3>
+                    <i :class="{'fa-chevron-down': activeGrammarPoint !== point.point, 'fa-chevron-up': activeGrammarPoint === point.point}" class="fas text-indigo-600 transition-transform duration-300"></i>
+                  </div>
+                  
+                  <!-- 文法詳情內容 -->
+                  <div v-if="activeGrammarPoint === point.point" class="p-6">
+                    <p class="text-indigo-500 font-medium mb-3">假名：{{ point.reading }}</p>
+                    <p class="text-lg text-slate-700 mb-4"><span class="font-semibold">意思：</span>{{ point.meaning }}</p>
+                    
+                    <div class="bg-slate-100 p-4 rounded-lg border border-slate-200">
+                      <h4 class="font-bold text-slate-800 mb-2">例句：</h4>
+                      <ul class="space-y-2">
+                        <li v-for="(example, exIndex) in point.examples" :key="exIndex" class="text-slate-600">
+                          <p>・{{ example.text }}</p>
+                          <p class="text-sm italic text-slate-500">（中文：{{ example.translation }}）</p>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <!-- 文法測驗區塊，可點擊收合 -->
+                    <div class="mt-6 border border-slate-300 rounded-lg">
+                      <div @click="toggleGrammarQuiz(point.point)" class="flex justify-between items-center p-4 bg-teal-50 cursor-pointer hover:bg-teal-100 transition-colors">
+                        <h4 class="text-lg font-bold text-teal-700">文法小測驗</h4>
+                        <i :class="{'fa-chevron-down': activeGrammarQuiz !== point.point, 'fa-chevron-up': activeGrammarQuiz === point.point}" class="fas text-teal-600 transition-transform duration-300"></i>
+                      </div>
+                      <div v-if="activeGrammarQuiz === point.point" class="p-6">
+                        <form @submit.prevent="checkQuizAnswers(point.quiz, point.point)" class="space-y-6">
+                          <div v-for="(question, qIndex) in point.quiz" :key="qIndex" class="bg-white p-6 rounded-lg border border-slate-200">
+                            <p class="font-semibold text-base text-slate-800 mb-4">{{ qIndex + 1 }}. {{ question.text }}</p>
+                            <div class="space-y-3">
+                              <label 
+                                v-for="(option, oIndex) in question.options" 
+                                :key="'g' + pIndex + 'q' + qIndex + 'o' + oIndex" 
+                                :for="'gram-' + pIndex + '-' + qIndex + '-' + oIndex"
+                                :class="{ 
+                                  'quiz-correct-option': showResults && quizResults[point.point + '-' + qIndex] && option === quizResults[point.point + '-' + qIndex].answer, 
+                                  'quiz-incorrect-option': showResults && quizResults[point.point + '-' + qIndex] && option === quizResults[point.point + '-' + qIndex].selected && option !== quizResults[point.point + '-' + qIndex].answer 
+                                }"
+                                class="block p-3 rounded-lg border border-gray-300 cursor-pointer transition-colors duration-200 quiz-option"
+                              >
+                                <input 
+                                  type="radio" 
+                                  :id="'gram-' + pIndex + '-' + qIndex + '-' + oIndex" 
+                                  :name="point.point + '-' + qIndex" 
+                                  :value="option" 
+                                  :disabled="showResults"
+                                  class="mr-3"
+                                >
+                                <span class="text-slate-700">{{ option }}</span>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="flex justify-center mt-6">
+                            <button type="submit" :disabled="showResults" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 disabled:bg-teal-400">
+                              確認答案
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 畫面切換：我的字卡 -->
+          <div v-if="currentView === 'flashcards'">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-800 mb-8 text-center">我的字卡</h1>
+            <div class="max-w-4xl mx-auto">
+              <div class="mb-6">
+                <input type="text" v-model="flashcardFilter" placeholder="搜尋字卡..." class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              </div>
+              <div v-if="filteredFlashcards.length === 0" class="text-center text-slate-500">
+                <p v-if="flashcards.length === 0">還沒有新增任何字卡。請到課程內容中點擊「加入字卡」。</p>
+                <p v-else>找不到符合條件的字卡。</p>
+              </div>
+              <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div v-for="(card, index) in filteredFlashcards" :key="index" class="bg-white p-5 rounded-lg card-shadow">
+                  <p class="text-xl font-bold text-indigo-600">{{ card.split('：')[0] }}</p>
+                  <p class="text-slate-600 mt-2">{{ card.split('：')[1] }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 畫面切換：錯題回顧 -->
+          <div v-if="currentView === 'review'">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-800 mb-8 text-center">錯題回顧</h1>
+            <div class="max-w-4xl mx-auto">
+              <div class="mb-6">
+                <input type="text" v-model="reviewFilter" placeholder="搜尋錯題詳解..." class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              </div>
+              <div v-if="filteredIncorrectQuestions.length === 0" class="text-center text-slate-500">
+                <p v-if="!hasReviewedQuiz">完成測驗後，您的錯題將會自動出現在這裡。</p>
+                <p v-else>太棒了，您沒有任何需要回顧的錯題！</p>
+              </div>
+              <div v-else class="space-y-8">
+                <div v-for="(item, index) in filteredIncorrectQuestions" :key="index" class="bg-white p-6 rounded-lg card-shadow">
+                  <span class="inline-block bg-indigo-100 text-indigo-600 text-xs font-semibold px-2 py-1 rounded-full mb-3">{{ item.prefix }}</span>
+                  <p class="font-bold text-lg text-slate-800 mb-2">題目：{{ item.questionText }}</p>
+                  <p class="text-green-600 font-semibold mb-2">正確答案：{{ item.correctAnswer }}</p>
+                  <div class="border-t border-slate-200 mt-4 pt-4">
+                    <p class="font-bold text-slate-700">詳解：<span class="font-normal">{{ item.explanation }}</span></p>
+                    <p class="font-bold text-slate-700 mt-2">延伸介紹：<span class="font-normal">{{ item.extendedInfo }}</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- 頁尾 -->
+        <footer class="bg-slate-900 text-gray-400 py-6 text-center">
+          <div class="container mx-auto">
+            <p>&copy; 2024 日語學習平台. All Rights Reserved.</p>
+          </div>
+        </footer>
+      `
+    };
+
+    // 創建並掛載 Vue 應用程式
+    createApp(App).mount('#app');
+  </script>
+</body>
+</html>
