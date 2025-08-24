@@ -538,46 +538,210 @@
         </section>
         
          <!-- 7. 學長姐案例與見證（Testimonials / Case Studies） -->
-    <section id="testimonials" class="section-padding bg-gray-50">
+        <section id="testimonials" class="section-padding bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-gray-900 text-3xl md:text-4xl font-semibold mb-4 text-center relative">
-                <span class="inline-block relative">
-                    學長姐案例分享
-                    <span class="absolute left-1/2 transform -translate-x-1/2 bottom-0 w-24 h-1 bg-blue-500 rounded-full -mb-4"></span>
-                </span>
+            <span class="inline-block relative">
+                學長姐案例分享
+                <span class="absolute left-1/2 transform -translate-x-1/2 bottom-0 w-24 h-1 bg-blue-500 rounded-full -mb-4"></span>
+            </span>
             </h2>
-            <p class="text-gray-700 text-base md:text-lg text-center max-w-2xl mx-auto mb-16">
-                他們的成功，就是我們最好的成就證明。
+            <p class="text-gray-700 text-base md:text-lg text-center max-w-2xl mx-auto mb-8">
+            真實的經驗分享，以準備方法與學習建議為主，協助你穩健規劃赴日職涯。
             </p>
 
-            <!-- 見證滑動 Carousel (簡易版本，非真實輪播) -->
-            <div class="overflow-x-auto no-scrollbar pb-4 md:pb-0 snap-x snap-mandatory scroll-smooth">
-                <div class="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 w-max md:w-auto">
-                    <!-- 見證卡片 1 -->
-                    <div class="flex-shrink-0 w-[calc(100vw-3rem)] md:w-auto snap-center bg-white rounded-lg shadow-md p-8 text-center border border-gray-200 transform hover:shadow-xl hover:-translate-y-1 transition duration-300">
-                        <img src="jp-portfolio/assets/img/jp-consultant/jp_man_sw.png" alt="陳先生頭像" class="rounded-full w-24 h-24 object-cover mx-auto mb-6">
-                        <h4 class="text-gray-900 text-lg font-bold mb-1">陳先生</h4>
-                        <p class="text-gray-700 text-sm mb-4">前端開發工程師</p>
-                        <p class="text-gray-700 text-base leading-relaxed">「透過 CTSS 的協助，我不只找到了理想的日本工作，更學會如何融入當地職場文化。從履歷準備到面試技巧，CTSS 的顧問給了我全方位的指導，讓我能自信地展現技術實力，順利開啟我的日本職涯新篇章。」</p>
-                    </div>
-
-                    <!-- 見證卡片 2 -->
-                    <div class="flex-shrink-0 w-[calc(100vw-3rem)] md:w-auto snap-center bg-white rounded-lg shadow-md p-8 text-center border border-gray-200 transform hover:shadow-xl hover:-translate-y-1 transition duration-300">
-                        <img src="jp-portfolio/assets/img/jp-consultant/jp_woman_sw.png" alt="林小姐頭像" class="rounded-full w-24 h-24 object-cover mx-auto mb-6">
-                        <h4 class="text-gray-900 text-lg font-bold mb-1">林小姐</h4>
-                        <p class="text-gray-700 text-sm mb-4">Java 後端工程師</p>
-                        <p class="text-gray-700 text-base leading-relaxed">「CTSS 不僅是人才媒合，更像職涯加速器。他們提供的企業內訓機會，讓我接觸到日本金融業的核心技術，並在實戰中快速提升。對於想深化技術、挑戰自我的工程師來說，這裡是最好的起點。」</p>
-                    </div>
-
-                    <!-- 見證卡片 3 -->
-                    <div class="flex-shrink-0 w-[calc(100vw-3rem)] md:w-auto snap-center bg-white rounded-lg shadow-md p-8 text-center border border-gray-200 transform hover:shadow-xl hover:-translate-y-1 transition duration-300">
-                        <img src="jp-portfolio/assets/img/jp-consultant/jp_group_sw.png" alt="王先生頭像" class="rounded-full w-24 h-24 object-cover mx-auto mb-6">
-                        <h4 class="text-gray-900 text-lg font-bold mb-1">王先生</h4>
-                        <p class="text-gray-700 text-sm mb-4">Salesforce 顧問工程師</p>
-                        <p class="text-gray-700 text-base leading-relaxed">「從台灣到日本，從電商到製造業，CTSS 讓我看到了職涯的無限可能。他們精準地媒合了我的技術背景與日本企業的數位轉型需求，讓我有機會在不同產業中深度學習，成為跨領域的 IT 專家。」</p>
-                    </div>
-                </div>
+            <!-- Controls -->
+            <div class="flex items-center justify-between mb-4">
+            <div class="space-x-2">
+                <button id="alumni-prev"
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 bg-white hover:bg-gray-100 transition"
+                        aria-label="上一則">
+                <span class="sr-only">上一則</span>
+                <!-- left chevron -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button id="alumni-next"
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 bg-white hover:bg-gray-100 transition"
+                        aria-label="下一則">
+                <span class="sr-only">下一則</span>
+                <!-- right chevron -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 5l7 7-7 7"/></svg>
+                </button>
             </div>
+            </div>
+
+            <!-- Carousel Track -->
+            <div id="alumni-track"
+                class="overflow-x-auto no-scrollbar pb-2 snap-x snap-mandatory scroll-smooth"
+                tabindex="0" aria-roledescription="carousel" aria-label="學長姐案例輪播">
+            <div class="flex gap-6 min-w-full">
+                <!-- Slide 1 -->
+                <article class="snap-center shrink-0 w-[85%] sm:w-[65%] md:w-[48%] lg:w-[32%]
+                                bg-white rounded-2xl shadow-md p-6 border border-gray-200
+                                transform hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                <figure class="flex flex-col items-center text-center">
+                    <img src="jp-portfolio/assets/img/jp-consultant/jp_man_sw.png"
+                        alt="學長 A 頭像" class="rounded-full w-20 h-20 object-cover mb-4"
+                        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<?xml version=&quot;1.0&quot;?><svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;160&quot; height=&quot;160&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%23e5e7eb&quot;/><text x=&quot;50%&quot; y=&quot;54%&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot; font-size=&quot;28&quot; fill=&quot;%239ca3af&quot;>Avatar</text></svg>';">
+                    <figcaption class="mb-1 text-gray-900 font-semibold">學長 A（化名）</figcaption>
+                    <p class="text-gray-600 text-sm mb-4">工程領域</p>
+                </figure>
+
+                <div class="text-gray-800 leading-relaxed">
+                    「準備過程中，我把『自我介紹（1 分鐘）』與『專案亮點（STAR）』各寫成要點清單，反覆練習到自然。面試時先講結構，再補細節，效果穩定很多。」
+                </div>
+
+                <!-- Meta / tags -->
+                <ul class="flex flex-wrap gap-2 mt-4">
+                    <li class="px-2 py-1 text-xs rounded-full border text-gray-600">履歷整理</li>
+                    <li class="px-2 py-1 text-xs rounded-full border text-gray-600">面試表達</li>
+                    <li class="px-2 py-1 text-xs rounded-full border text-gray-600">赴日前準備</li>
+                </ul>
+
+                <!-- 預留影片（不顯示） -->
+                <div class="hidden" aria-hidden="true">
+                    <!-- 例：<iframe src="https://www.youtube-nocookie.com/embed/XXXXXXXX" allowfullscreen></iframe> -->
+                </div>
+                </article>
+
+                <!-- Slide 2 -->
+                <article class="snap-center shrink-0 w-[85%] sm:w-[65%] md:w-[48%] lg:w-[32%]
+                                bg-white rounded-2xl shadow-md p-6 border border-gray-200
+                                transform hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                <figure class="flex flex-col items-center text-center">
+                    <img src="jp-portfolio/assets/img/jp-consultant/jp_woman_sw.png"
+                        alt="學姊 B 頭像" class="rounded-full w-20 h-20 object-cover mb-4"
+                        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<?xml version=&quot;1.0&quot;?><svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;160&quot; height=&quot;160&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%23e5e7eb&quot;/><text x=&quot;50%&quot; y=&quot;54%&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot; font-size=&quot;28&quot; fill=&quot;%239ca3af&quot;>Avatar</text></svg>';">
+                    <figcaption class="mb-1 text-gray-900 font-semibold">學姊 B（化名）</figcaption>
+                    <p class="text-gray-600 text-sm mb-4">工程領域</p>
+                </figure>
+
+                <div class="text-gray-800 leading-relaxed">
+                    「我把職缺 JD 的關鍵字（框架、雲服務、資料庫）逐項對照自己的專案證據，整理到一頁表格。投遞前檢查『證據對應度』，有助於提高面試邀約率。」
+                </div>
+
+                <ul class="flex flex-wrap gap-2 mt-4">
+                    <li class="px-2 py-1 text-xs rounded-full border text-gray-600">職缺對標</li>
+                    <li class="px-2 py-1 text-xs rounded-full border text-gray-600">專案證據</li>
+                    <li class="px-2 py-1 text-xs rounded-full border text-gray-600">文件化習慣</li>
+                </ul>
+
+                <div class="hidden" aria-hidden="true"></div>
+                </article>
+
+                <!-- Slide 3 -->
+                <article class="snap-center shrink-0 w-[85%] sm:w-[65%] md:w-[48%] lg:w-[32%]
+                                bg-white rounded-2xl shadow-md p-6 border border-gray-200
+                                transform hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                <figure class="flex flex-col items-center text-center">
+                    <img src="jp-portfolio/assets/img/jp-consultant/jp_group_sw.png"
+                        alt="學長 C 頭像" class="rounded-full w-20 h-20 object-cover mb-4"
+                        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<?xml version=&quot;1.0&quot;?><svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;160&quot; height=&quot;160&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%23e5e7eb&quot;/><text x=&quot;50%&quot; y=&quot;54%&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot; font-size=&quot;28&quot; fill=&quot;%239ca3af&quot;>Avatar</text></svg>';">
+                    <figcaption class="mb-1 text-gray-900 font-semibold">學長 C（化名）</figcaption>
+                    <p class="text-gray-600 text-sm mb-4">工程領域</p>
+                </figure>
+
+                <div class="text-gray-800 leading-relaxed">
+                    「日文部分我準備了 3 種長度版的自我介紹（30 秒 / 1 分鐘 / 2 分鐘），面試官時間不一定，彈性切換比較安心；遇到聽不懂就確認重述，避免誤解。」
+                </div>
+
+                <ul class="flex flex-wrap gap-2 mt-4">
+                    <li class="px-2 py-1 text-xs rounded-full border text-gray-600">日語面試</li>
+                    <li class="px-2 py-1 text-xs rounded-full border text-gray-600">溝通確認</li>
+                    <li class="px-2 py-1 text-xs rounded-full border text-gray-600">時間管理</li>
+                </ul>
+
+                <div class="hidden" aria-hidden="true"></div>
+                </article>
+
+                <!-- Slide 4 -->
+                <article class="snap-center shrink-0 w-[85%] sm:w-[65%] md:w-[48%] lg:w-[32%]
+                                bg-white rounded-2xl shadow-md p-6 border border-gray-200
+                                transform hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                <figure class="flex flex-col items-center text-center">
+                    <img src="jp-portfolio/assets/img/jp-consultant/jp_woman_sw.png"
+                        alt="學姊 D 頭像" class="rounded-full w-20 h-20 object-cover mb-4"
+                        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<?xml version=&quot;1.0&quot;?><svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;160&quot; height=&quot;160&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%23e5e7eb&quot;/><text x=&quot;50%&quot; y=&quot;54%&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot; font-size=&quot;28&quot; fill=&quot;%239ca3af&quot;>Avatar</text></svg>';">
+                    <figcaption class="mb-1 text-gray-900 font-semibold">學姊 D（化名）</figcaption>
+                    <p class="text-gray-600 text-sm mb-4">工程領域</p>
+                </figure>
+
+                <div class="text-gray-800 leading-relaxed">
+                    「我把重要文件（履歷、職務經歷書、專案截圖）集中雲端資料夾，命名標準化，面試過程要補件或即時分享都很有效率；也方便之後更新版本。」
+                </div>
+
+                <ul class="flex flex-wrap gap-2 mt-4">
+                    <li class="px-2 py-1 text-xs rounded-full border text-gray-600">文件管理</li>
+                    <li class="px-2 py-1 text-xs rounded-full border text-gray-600">版本控管</li>
+                    <li class="px-2 py-1 text-xs rounded-full border text-gray-600">面試效率</li>
+                </ul>
+
+                <div class="hidden" aria-hidden="true"></div>
+                </article>
+            </div>
+            </div>
+
+            <!-- Indicators -->
+            <div id="alumni-dots" class="flex justify-center gap-2 mt-6" aria-hidden="true">
+            <span class="w-2.5 h-2.5 rounded-full bg-gray-300"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-gray-300"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-gray-300"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-gray-300"></span>
+            </div>
+        </div>
+
+        <style>
+            .no-scrollbar::-webkit-scrollbar { display: none; }
+            .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        </style>
+
+        <script>
+            (function(){
+            const track = document.getElementById('alumni-track');
+            const prev  = document.getElementById('alumni-prev');
+            const next  = document.getElementById('alumni-next');
+            const dots  = document.getElementById('alumni-dots').children;
+
+            function slideWidth(){
+                // 以第一張卡片的外寬作為一次捲動距離
+                const first = track.querySelector('article');
+                return first ? first.getBoundingClientRect().width + 24 /* gap */ : track.clientWidth;
+            }
+
+            function scrollByDir(dir){
+                track.scrollBy({ left: dir * slideWidth(), behavior: 'smooth' });
+            }
+
+            prev.addEventListener('click', () => scrollByDir(-1));
+            next.addEventListener('click', () => scrollByDir(1));
+
+            // 鍵盤左右鍵
+            track.addEventListener('keydown', (e)=>{
+                if(e.key === 'ArrowLeft'){ e.preventDefault(); scrollByDir(-1); }
+                if(e.key === 'ArrowRight'){ e.preventDefault(); scrollByDir(1); }
+            });
+
+            // 指示點同步（基於最靠左的可見卡片）
+            const io = new IntersectionObserver((entries)=>{
+                entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    const all = Array.from(track.querySelectorAll('article'));
+                    const idx = all.indexOf(entry.target);
+                    Array.from(dots).forEach((d,i)=>{
+                    d.className = 'w-2.5 h-2.5 rounded-full ' + (i===idx ? 'bg-blue-600' : 'bg-gray-300');
+                    });
+                }
+                });
+            }, { root: track, threshold: 0.6 });
+
+            track.querySelectorAll('article').forEach(card => io.observe(card));
+            })();
+        </script>
+        </section>
 
         <!-- 8. 常見問題（FAQ） -->
         <section id="faq" class="section-padding bg-white">
@@ -593,63 +757,186 @@
                 </p>
 
                 <!-- FAQ Section -->
-<div class="space-y-4">
-    <!-- FAQ Item 1: Visa Timeline -->
-    <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-        <button class="accordion-header w-full flex justify-between items-center bg-gray-50 p-5 text-left text-gray-900 font-medium text-lg hover:bg-gray-100 transition duration-200">
-            <span>面試流程是線上還是到日本？</span>
-            <svg class="w-6 h-6 transform transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-        </button>
-        <div class="accordion-content hidden bg-white p-5">
-            <div class="text-gray-700 text-base leading-relaxed mb-3">
-                100% 為遠端（視訊）面試，一般分兩輪：① 技術面試（含筆試或 Live Coding），② 日本 HR / 部門主管面談。如需最終現場面談，會預先協助申請短期商務簽證。
-            </div>
-            <div class="text-gray-600 text-sm" lang="ja">
-                100% はオンライン（ビデオ）面接で、① 技術面接（筆記 or ライブコーディング）、② 日系 HR／部署長との面談の 2 ステップが主流です。最終対面を要する場合は、短期商用ビザ取得をサポートします。
-            </div>
-        </div>
-    </div>
+                <div class="space-y-4">
+                    <!-- FAQ Item 1: Visa Timeline -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                        <button class="accordion-header w-full flex justify-between items-center bg-gray-50 p-5 text-left text-gray-900 font-medium text-lg hover:bg-gray-100 transition duration-200">
+                            <span>面試流程是線上還是到日本？</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="accordion-content hidden bg-white p-5">
+                            <div class="text-gray-700 text-base leading-relaxed mb-3">
+                                100% 為遠端（視訊）面試，一般分兩輪：① 技術面試（含筆試或 Live Coding），② 日本 HR / 部門主管面談。如需最終現場面談，會預先協助申請短期商務簽證。
+                            </div>
+                            <div class="text-gray-600 text-sm" lang="ja">
+                                100% はオンライン（ビデオ）面接で、① 技術面接（筆記 or ライブコーディング）、② 日系 HR／部署長との面談の 2 ステップが主流です。最終対面を要する場合は、短期商用ビザ取得をサポートします。
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- FAQ Item 2: Japanese Language Requirements -->
-    <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-        <button class="accordion-header w-full flex justify-between items-center bg-gray-50 p-5 text-left text-gray-900 font-medium text-lg hover:bg-gray-100 transition duration-200">
-            <span>日文能力最低要求？</span>
-            <svg class="w-6 h-6 transform transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-        </button>
-        <div class="accordion-content hidden bg-white p-5">
-            <div class="text-gray-700 text-base leading-relaxed mb-3">
-                多數職缺要求 N1 以上日文聽說讀；若專案為英語環境，可接受 N2，但需補強日文基礎。我們提供日文面試題庫與會話課程資源。
-            </div>
-            <div class="text-gray-600 text-sm" lang="ja">
-                多くのポジションは JLPT N1 以上が目安です。英語案件の場合は N2 でも可ですが、基礎日本語の研修を推奨します。CTSS では面接対策問題集と会話講座を提供しています。
-            </div>
-        </div>
-    </div>
+                    <!-- FAQ Item 2: Japanese Language Requirements -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                        <button class="accordion-header w-full flex justify-between items-center bg-gray-50 p-5 text-left text-gray-900 font-medium text-lg hover:bg-gray-100 transition duration-200">
+                            <span>日文能力最低要求？</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="accordion-content hidden bg-white p-5">
+                            <div class="text-gray-700 text-base leading-relaxed mb-3">
+                                多數職缺要求 N1 以上日文聽說讀；若專案為英語環境，可接受 N2，但需補強日文基礎。我們提供日文面試題庫與會話課程資源。
+                            </div>
+                            <div class="text-gray-600 text-sm" lang="ja">
+                                多くのポジションは JLPT N1 以上が目安です。英語案件の場合は N2 でも可ですが、基礎日本語の研修を推奨します。CTSS では面接対策問題集と会話講座を提供しています。
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- FAQ Item 3: Recruitment Targets -->
-    <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-        <button class="accordion-header w-full flex justify-between items-center bg-gray-50 p-5 text-left text-gray-900 font-medium text-lg hover:bg-gray-100 transition duration-200">
-            <span>招募對象是？</span>
-            <svg class="w-6 h-6 transform transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-        </button>
-        <div class="accordion-content hidden bg-white p-5">
-            <div class="text-gray-700 text-base leading-relaxed mb-3">
-                主要針對台灣地區的軟體工程師，無論您是剛畢業的學生還是具備經驗的專業人士，我們都歡迎您的加入！
-            </div>
-            <div class="text-gray-600 text-sm" lang="ja">
-                主に台湾のソフトウェアエンジニアを対象としています。新卒の方から経験豊富なプロフェッショナルまで、どなたでもご応募いただけます。
-            </div>
-        </div>
-    </div>
-</div>
+                    <!-- FAQ Item 3: Recruitment Targets -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                        <button class="accordion-header w-full flex justify-between items-center bg-gray-50 p-5 text-left text-gray-900 font-medium text-lg hover:bg-gray-100 transition duration-200">
+                            <span>招募對象是？</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="accordion-content hidden bg-white p-5">
+                            <div class="text-gray-700 text-base leading-relaxed mb-3">
+                                主要針對台灣地區的軟體工程師，無論您是剛畢業的學生還是具備經驗的專業人士，我們都歡迎您的加入！
+                            </div>
+                            <div class="text-gray-600 text-sm" lang="ja">
+                                主に台湾のソフトウェアエンジニアを対象としています。新卒の方から経験豊富なプロフェッショナルまで、どなたでもご応募いただけます。
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <section id="jp-visa-pathways" class="section-padding bg-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Heading -->
+                <header class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
+                    日本簽證 × 工作權 × 永住路徑
+                </h2>
+                <p class="text-gray-700 text-base md:text-lg mt-3">
+                    先掌握路徑，再談職缺。從入境、就業到永住（PR），一頁看懂您的選項與加速點。
+                </p>
+                </header>
+
+                <!-- Value chips -->
+                <div class="flex flex-wrap justify-center gap-2 mb-10">
+                <span class="px-3 py-1 text-sm rounded-full bg-blue-50 text-blue-700 border border-blue-200">工程/人文/國際業務（主力白領）</span>
+                <span class="px-3 py-1 text-sm rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">高度專門職 HSP（評分制）</span>
+                <span class="px-3 py-1 text-sm rounded-full bg-violet-50 text-violet-700 border border-violet-200">特定技能 SSW</span>
+                <span class="px-3 py-1 text-sm rounded-full bg-amber-50 text-amber-700 border border-amber-200">打工度假 Working Holiday</span>
+                <span class="px-3 py-1 text-sm rounded-full bg-gray-50 text-gray-700 border border-gray-200">一般永住（原則 10 年）</span>
+                </div>
+
+                <!-- Cards grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Engineer / Humanities / Int'l Services -->
+                <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-3">
+                    <span class="inline-flex w-10 h-10 items-center justify-center rounded-full bg-blue-600/10 text-blue-700">
+                        <!-- briefcase icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-7 8h8a2 2 0 002-2V9a2 2 0 00-2-2h-1V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v1H7a2 2 0 00-2 2v9a2 2 0 002 2z"/></svg>
+                    </span>
+                    <h3 class="text-lg font-bold text-gray-900">工程／人文／國際業務（E/H/IS）</h3>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-6">
+                    適用多數白領（例：<span class="whitespace-nowrap">IT 工程師</span>、設計、語言／國際業務）。通常需相關學歷或實務經驗；可在同類型職務間轉換雇主。停留期間依審核核給（常見 1–5 年）。
+                    </p>
+                    <ul class="mt-3 text-sm text-gray-700 space-y-1 list-disc pl-5">
+                    <li>基礎路徑：留學／海外→E/H/IS→（條件達成）升級 HSP</li>
+                    <li>常見文件：學位、職務經歷、雇主契約、職務說明</li>
+                    </ul>
+                    <div class="mt-4 text-xs text-gray-500">依日本外務省「Working visa」分類。</div>
+                </article>
+
+                <!-- Highly Skilled Professional -->
+                <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-3">
+                    <span class="inline-flex w-10 h-10 items-center justify-center rounded-full bg-emerald-600/10 text-emerald-700">
+                        <!-- star icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.034a1 1 0 00-1.176 0l-2.802 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.88 8.72c-.783-.57-.38-1.81.588-1.81H6.93a1 1 0 00.95-.69l1.17-3.292z"/></svg>
+                    </span>
+                    <h3 class="text-lg font-bold text-gray-900">高度專門職（HSP）｜評分制</h3>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-6">
+                    依「學歷、年薪、年資、研究／資格、日語」等加總評分；<span class="font-semibold">70 分以上</span>認定為高度專門職並享有優遇。
+                    </p>
+                    <ul class="mt-3 text-sm text-gray-700 space-y-1 list-disc pl-5">
+                    <li><span class="font-medium">PR 加速：</span>維持 <span class="font-semibold">70+</span> 分可於約 <span class="font-semibold">3 年</span>申請永住；<span class="font-semibold">80+</span> 分可約 <span class="font-semibold">1 年</span>申請（仍需符合稅務／素行等一般要件）。</li>
+                    <li>HSP (i) 常見核給 5 年；達成條件可升 HSP (ii)（活動範圍更廣）。</li>
+                    </ul>
+                    <div class="mt-4 text-xs text-gray-500">依日本法務省「高度專門職」與優遇措施；PR 一年／三年軌道以評分達標並持續為前提。</div>
+                </article>
+
+                <!-- Specified Skilled Worker -->
+                <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-3">
+                    <span class="inline-flex w-10 h-10 items-center justify-center rounded-full bg-violet-600/10 text-violet-700">
+                        <!-- wrench icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-2.155 3.887-.566a2.25 2.25 0 002.603 1.02c1.83-.554 3.539 1.154 2.985 2.985a2.25 2.25 0 01-1.02 2.603c-1.589.963-1.19 3.461.566 3.887L12 21l-2.121-2.121m0 0l-6.364-6.364a3 3 0 014.243-4.243L12 12"/></svg>
+                    </span>
+                    <h3 class="text-lg font-bold text-gray-900">特定技能（SSW）</h3>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-6">
+                    針對人力短缺產業之即戰力。<span class="font-medium">SSW (i)</span> 最長 5 年且一般不得攜家屬；<span class="font-medium">SSW (ii)</span> 無上限並可攜家屬（限特定領域）。多需通過技能與日語測驗或完成對應實習訓練。
+                    </p>
+                    <ul class="mt-3 text-sm text-gray-700 space-y-1 list-disc pl-5">
+                    <li>與 E/H/IS、HSP 路徑不同，適配族群與產業需事先評估。</li>
+                    </ul>
+                    <div class="mt-4 text-xs text-gray-500">依 ssw.go.jp 與外務省說明。</div>
+                </article>
+
+                <!-- Working Holiday -->
+                <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-3">
+                    <span class="inline-flex w-10 h-10 items-center justify-center rounded-full bg-amber-600/10 text-amber-700">
+                        <!-- plane icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.5 6h.75l6.75 6.75-2.25 2.25L10.5 9.75V21l-2.25-2.25V9.75L3 6h7.5z"/></svg>
+                    </span>
+                    <h3 class="text-lg font-bold text-gray-900">打工度假（Working Holiday）</h3>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-6">
+                    以旅遊文化交流為主，年齡通常 <span class="whitespace-nowrap">18–30 歲</span>（依雙邊協議），可短期工作體驗。做為「先赴日適應 → 回國或轉職路徑」的探索選項。
+                    </p>
+                    <ul class="mt-3 text-sm text-gray-700 space-y-1 list-disc pl-5">
+                    <li>建議搭配日語學習與職涯規劃，銜接 E/H/IS 或返國發展。</li>
+                    </ul>
+                    <div class="mt-4 text-xs text-gray-500">依外務省 Working Holiday 計畫說明。</div>
+                </article>
+
+                <!-- PR general & conversion -->
+                <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-3">
+                    <span class="inline-flex w-10 h-10 items-center justify-center rounded-full bg-gray-600/10 text-gray-700">
+                        <!-- home icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-7 9 7v8a2 2 0 01-2 2h-4a2 2 0 01-2-2V9m-6 11a2 2 0 01-2-2v-5"/></svg>
+                    </span>
+                    <h3 class="text-lg font-bold text-gray-900">永住（PR）｜一般規則與加速點</h3>
+                    </div>
+                    <ul class="text-sm text-gray-700 space-y-2">
+                    <li><span class="font-medium">一般原則：</span>多數申請人需 <span class="whitespace-nowrap">連續 10 年</span>合法居留（其中至少 5 年具工作或家族居留資格）且符合納稅、素行等要件。</li>
+                    <li><span class="font-medium">評分加速：</span>達 <span class="font-semibold">HSP 70+</span> 分維持約 3 年，或 <span class="font-semibold">80+</span> 分維持約 1 年，可走快速 PR 軌。</li>
+                    <li><span class="font-medium">轉換示意：</span><span class="whitespace-nowrap">留學→E/H/IS→HSP→PR</span>／<span class="whitespace-nowrap">在職 E/H/IS→HSP→PR</span>。</li>
+                    </ul>
+                    <div class="mt-4 text-xs text-gray-500">實際審查以法務省標準為準，並須符合稅務、保險等一般要件。</div>
+                </article>
+                </div>
+
+                <!-- Notes -->
+                <p class="mt-6 text-xs text-gray-500 leading-relaxed">
+                說明依日本外務省／法務省公開資訊彙整；各簽證類別之條件、可轉換性、可否攜家屬與停留期間等，仍以最新官方公告與個案審查為準。若欲申請永住（PR），除評分或年限條件外，仍須符合稅務、素行、社保繳納等一般要件。
+                </p>
+            </div>
+            </section>
+
 
         <!-- 8. 聯絡表單（Contact / CTA） -->
         <section id="contact" class="section-padding bg-gray-900 text-white">
