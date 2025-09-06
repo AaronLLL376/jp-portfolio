@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日文面試準備練習</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7fafc; }
+        .container { max-width: 960px; }
+        .audio-player { width: 100%; height: 40px; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4 sm:p-6">
+
+<div class="container bg-white rounded-lg shadow-xl p-6 sm:p-8 space-y-8">
+
+    <h1 class="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-6">日文面試準備練習</h1>
+    <p class="text-center text-gray-600 mb-8">
+        點擊播放按鈕即可收聽每個例句和自我介紹模板的語音，點擊下載按鈕則可將音檔保存至您的裝置。
+    </p>
+
+    <!-- 常用面試句型 -->
+    <div class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-gray-700 border-b-2 border-gray-200 pb-2">常用面試句型</h2>
+        <div id="phrases-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+    </div>
+
+    <!-- 自我介紹模板 -->
+    <div class="space-y-8">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-gray-700 border-b-2 border-gray-200 pb-2">自我介紹模板 (40秒以上)</h2>
+        <div id="templates-container" class="space-y-8"></div>
+    </div>
+</div>
+
+<script>
+const phrases = [
+    {
+        japanese: "本日はお時間をいただき、誠にありがとうございます。",
+        translation: "今天非常感謝您撥冗面試。",
+        romaji: "Honjitsu wa o-jikan o itadaki, makoto ni arigatou gozaimasu.",
+        audio: "./Interview/phrase-1.wav"
+    },
+    {
+        japanese: "〇〇大学の〇〇と申します。",
+        translation: "我是來自〇〇大學的〇〇。",
+        romaji: "〇〇 Daigaku no 〇〇 to moushimasu.",
+        audio: "Interview/phrase-2.wav"
+    },
+    {
+        japanese: "私は〇〇の経験を活かし、貢献したいと考えております。",
+        translation: "我希望能夠活用〇〇的經驗，做出貢獻。",
+        romaji: "Watashi wa 〇〇 no keiken o ikashi, kouken shitai to kangaete orimasu.",
+        audio: "Interview/phrase-3.wav"
+    },
+    {
+        japanese: "私の強みは、〇〇です。",
+        translation: "我的優勢是〇〇。",
+        romaji: "Watashi no tsuyomi wa, 〇〇 desu.",
+        audio: "Interview/phrase-4.wav"
+    },
+    {
+        japanese: "御社の〇〇という理念に共感いたしました。",
+        translation: "我對貴公司〇〇的理念深感共鳴。",
+        romaji: "Onsha no 〇〇 to iu rinen ni kyoukan itashimashita.",
+        audio: "Interview/phrase-5.wav"
+    },
+    {
+        japanese: "一日も早く戦力となれるよう、精一杯頑張ります。",
+        translation: "為了能盡快成為戰力，我會全力以赴。",
+        romaji: "Ichinichi mo hayaku senryoku to nareru you, sei ippai ganbarimasu.",
+        audio: "Interview/phrase-6.wav"
+    },
+    {
+        japanese: "本日はどうぞよろしくお願いいたします。",
+        translation: "今天麻煩您了，還請多多指教。",
+        romaji: "Honjitsu wa douzo yoroshiku onegai itashimasu.",
+        audio: "Interview/phrase-7.wav"
+    }
+];
+
+const templates = [
+    {
+        title: "模板一：應屆畢業生或經驗較少者",
+        color: "blue",
+        text: `本日はお忙しい中、お時間をいただき、誠にありがとうございます。〇〇大学〇〇学科の〇〇〇と申します。
+大学では〇〇学を専攻し、特に〇〇の分野に深く興味を持ち、研究に励んでまいりました。
+在学中には、〇〇のサークル活動でリーダーを務め、チームメンバーと協力して一つの目標を達成することの喜びと難しさを学びました。
+その経験から、私は他者と円滑にコミュニケーションを取り、課題を解決していく力を養いました。
+貴社の「〇〇」という企業理念に深く共感し、この力を活かして、チームの一員として貢献したいと考えております。
+未熟な点は多々ございますが、一日も早く戦力となれるよう、謙虚に学び、全力で業務に邁進してまいります。
+本日はどうぞよろしくお願いいたします。`,
+        audio: "./Interview/template-1.wav"
+    },
+    {
+        title: "模板二：有工作經驗者",
+        color: "green",
+        text: `本日は貴重なお時間をいただき、誠にありがとうございます。〇〇と申します。
+前職では〇〇業界で、営業として〇年間勤務しておりました。
+主な業務内容は、法人顧客向けの〇〇服務提案和新規顧客開拓です。
+特に、前々から課題であった〇〇の課題に対し、〇〇の提案をすることで、半年で〇〇件の契約を獲得し、社内で表彰されました。
+この経験を通じて、顧客の潜在的なニーズを深く引き出し、最適なソリューションを提供することの重要性を学びました。
+今回、貴社の「〇〇」という事業内容に強く魅力を感じ、これまでの〇〇の経験を活かし、更なる成長に貢献できると確信しております。
+今後は、私の〇〇のスキルを活かし、貴社の〇〇分野で即戦力として貢献していきたいと考えております。
+本日はどうぞよろしくお願いいたします。`,
+        audio: "Interview/template-2.wav"
+    }
+];
+
+// 動態產生句型卡片
+const phrasesContainer = document.getElementById('phrases-container');
+phrases.forEach((phrase, idx) => {
+    const card = document.createElement('div');
+    card.className = 'bg-gray-50 rounded-lg p-5 border border-gray-200 shadow-sm flex flex-col justify-between';
+    card.innerHTML = `
+        <div>
+            <p class="text-gray-800 font-medium text-lg mb-1">${phrase.japanese}</p>
+            <p class="text-gray-500 text-sm mb-2">${phrase.romaji}</p>
+            <p class="text-gray-700 text-base mb-4">${phrase.translation}</p>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button onclick="playAudio('${phrase.audio}')" class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition duration-300 self-start">播放</button>
+        </div>
+        <audio id="audio-${idx}" class="audio-player mt-2" style="display:none;"></audio>
+    `;
+    phrasesContainer.appendChild(card);
+});
+
+// 動態產生模板卡片
+const templatesContainer = document.getElementById('templates-container');
+templates.forEach((tpl, idx) => {
+    const card = document.createElement('div');
+    card.className = `bg-${tpl.color}-50 rounded-lg p-6 border border-${tpl.color}-200 shadow-md`;
+    card.innerHTML = `
+        <h3 class="text-xl sm:text-2xl font-bold text-${tpl.color}-700 mb-4">${tpl.title}</h3>
+        <p class="text-gray-800 leading-relaxed text-base sm:text-lg mb-4">${tpl.text.replace(/\n/g, '<br>')}</p>
+        <div class="flex items-center space-x-4">
+            <button onclick="playAudio('${tpl.audio}', 'tpl-audio-${idx}')" class="px-6 py-2 bg-${tpl.color}-600 text-white rounded-full hover:bg-${tpl.color}-700 transition duration-300 shadow-lg font-semibold">播放</button>
+        </div>
+        <audio id="tpl-audio-${idx}" class="audio-player mt-2" style="display:none;"></audio>
+    `;
+    templatesContainer.appendChild(card);
+});
+
+// 播放音檔
+function playAudio(audioSrc, audioId) {
+    let audio;
+    if (audioId) {
+        audio = document.getElementById(audioId);
+    } else {
+        const idx = phrases.findIndex(p => p.audio === audioSrc);
+        audio = document.getElementById('audio-' + idx);
+    }
+    if (!audio) return;
+    audio.src = audioSrc;
+    audio.style.display = 'block';
+    audio.play();
+}
+</script>
+
+</body>
+</html>
