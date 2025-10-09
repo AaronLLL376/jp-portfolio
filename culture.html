@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>東京軟體文化與瀑布開發模型</title>
+    <!-- 引入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Vue 3 CDN (Composition API) -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- 引入 Inter 字體 -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc; /* 柔和的淺灰色背景 */
+        }
+    </style>
+    <!-- Tailwind Customization for color and shadow -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#4f46e5', /* Indigo-600 */
+                        'primary-purple': '#6366f1', /* Indigo-500 */
+                    },
+                    boxShadow: {
+                        'active-tab': '0 4px 15px rgba(79, 70, 229, 0.3)', /* 藍色柔和陰影 */
+                        'stage-glow': '0 0 15px rgba(99, 102, 241, 0.8)', /* 階段專屬光暈 - 保持以防未來使用 */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div id="app" class="min-h-screen pt-12 pb-20">
+    <!-- 主內容區塊: 居中對齊並限制最大寬度 -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- 應用程式標題 -->
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-10 text-center">
+            專業軟體文化與工程分析
+        </h1>
+
+        <!-- Tab 式導航列 -->
+        <nav class="flex justify-center mb-12">
+            <template v-for="tab in tabs" :key="tab.id">
+                <button
+                    @click="currentTab = tab.id"
+                    :class="[
+                        'py-3 px-6 text-lg font-medium transition-all duration-300 rounded-xl mx-2',
+                        'focus:outline-none focus:ring-4 focus:ring-primary-blue/30',
+                        currentTab === tab.id
+                            ? 'bg-primary-blue text-white shadow-active-tab'
+                            : 'text-gray-600 hover:bg-indigo-50 hover:text-primary-blue'
+                    ]"
+                >
+                    {{ tab.name }}
+                </button>
+            </template>
+        </nav>
+
+        <!-- 內容區塊一：東京軟體文化特點 (v-if 內容切換) -->
+        <div v-if="currentTab === 'culture'" class="space-y-12">
+            <h2 class="text-3xl font-bold text-center text-gray-800">
+                東京23區的軟體開發文化特點
+            </h2>
+            <p class="text-center text-gray-500 max-w-2xl mx-auto">
+                聚焦於東京軟體界特有的「職人」文化，強調品質、責任感與嚴謹流程。
+            </p>
+
+            <!-- 四個核心特點卡片 - 響應式網格佈局 -->
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                <div v-for="(feature, index) in cultureFeatures" :key="index"
+                     class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-primary-blue/70">
+                    <!-- 圖示與標題 -->
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-3 text-primary-blue">{{ feature.icon }}</span>
+                        <h3 class="text-xl font-semibold text-gray-800">{{ feature.title }}</h3>
+                    </div>
+                    <!-- 內容描述 -->
+                    <p class="text-gray-600 leading-relaxed">
+                        <strong class="font-medium text-gray-900">{{ feature.emphasis }}</strong>: {{ feature.content }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 內容區塊二：瀑布式開發 (工程師視角) (v-if 內容切換) -->
+        <div v-if="currentTab === 'waterfall'" class="space-y-12">
+            <h2 class="text-3xl font-bold text-center text-gray-800">
+                日本的傳統瀑布式開發 — 工程師視角
+            </h2>
+            <p class="text-center text-gray-500 max-w-2xl mx-auto">
+                從工程師角度解構傳統流程，著重於技術產出物和嚴格的審核機制。
+            </p>
+            
+            <!-- 四大工程師核心階段詳情 (保留互動與高亮效果) -->
+            <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">四大工程師核心階段與交付物</h3>
+            <div class="space-y-6">
+                <div v-for="(stage, index) in waterfallStages" :key="index"
+                     class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 flex cursor-pointer"
+                     :class="{
+                        'shadow-xl ring-4 ring-primary-purple/50 transform scale-[1.01]': hoveredStage === stage.step
+                     }"
+                     @mouseover="handleStageHover(stage.step)"
+                     @mouseleave="handleStageLeave"
+                >
+                    <!-- 左側階段顏色邊框 (新增 hover 顏色切換) -->
+                    <div class="w-2 h-auto rounded-l-lg mr-4 flex-shrink-0 transition-colors duration-300"
+                         :class="{
+                            'bg-primary-purple': hoveredStage !== stage.step,
+                            'bg-primary-blue': hoveredStage === stage.step,
+                         }">
+                    </div>
+
+                    <div class="flex-grow">
+                        <!-- 階段標題 -->
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 flex items-center">
+                            <span class="text-2xl mr-2 text-primary-purple">{{ stage.icon }}</span>
+                            {{ stage.step }}. {{ stage.phase }}
+                        </h3>
+                        <!-- 職責描述 -->
+                        <p class="text-gray-600 leading-relaxed mb-1">
+                            <strong class="font-medium text-gray-900">主要職責:</strong> {{ stage.role }}
+                        </p>
+                        <!-- 交付物/強調重點 -->
+                        <p class="text-sm text-gray-500 italic">
+                            <strong class="font-medium text-primary-blue">核心交付物:</strong> {{ stage.deliverables }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 案例分析區塊：包含兩個案例 -->
+            <div class="mt-12 space-y-8">
+                <h3 class="text-2xl font-bold text-gray-800 text-center border-t pt-8">嚴謹審核：真實案例分析</h3>
+
+                <!-- 案例一：階段 1 (設計) 的 Gate Review 挑戰 -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl border-l-8 border-red-500/70 transition-shadow duration-300 hover:shadow-2xl">
+                    <h4 class="text-2xl font-bold text-red-700 mb-4 flex items-center">
+                        <span class="text-3xl mr-2">🚨</span> 案例一：階段 1 (設計) 的 Gate Review 挑戰
+                    </h4>
+                    <p class="text-gray-600 mb-4 italic border-b pb-3">
+                        背景：在**階段 1 (設計)** 審核會議上，工程師提交了 API 規格文件。
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="font-semibold text-gray-800">問題點（文件缺陷）：</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 ml-4 space-y-1">
+                                <li>審核官發現某一 API 響應格式（Response Schema）與上游系統設計文件**不一致**。</li>
+                                <li>文件**缺乏錯誤碼（Error Code）的詳細定義**和追溯性說明。</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+                            <p class="font-semibold text-red-700">結果 (Waterfall 嚴謹性)：</p>
+                            <p class="text-sm text-red-600 leading-relaxed">
+                                本次 Gate Review **被強制中止 (Halt)**。工程師必須在一週內重新修訂文件，補齊所有定義，並證明與上游系統的一致性，才能重新排程審核。此延遲凸顯了 Waterfall 模式下**嚴謹文件審核的重要性**及**高昂的返工成本**。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 案例二：階段 2 (實作) 的程式碼審核 (Code Review) 挑戰 -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl border-l-8 border-primary-blue/70 transition-shadow duration-300 hover:shadow-2xl">
+                    <h4 class="text-2xl font-bold text-primary-blue mb-4 flex items-center">
+                        <span class="text-3xl mr-2">💻</span> 案例二：階段 2 (實作) 的 Code Review 挑戰
+                    </h4>
+                    <p class="text-gray-600 mb-4 italic border-b pb-3">
+                        背景：在**階段 2 (實作)** 程式碼審核期間，工程師 B 提交了核心業務邏輯的 PR (Pull Request)。
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="font-semibold text-gray-800">問題點（程式碼缺陷）：</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 ml-4 space-y-1">
+                                <li>該功能程式碼的**單元測試覆蓋率低於項目標準 (僅 65%)**。</li>
+                                <li>審核官發現部分變數和函式命名**未遵循團隊的日文命名規範**（例如：使用羅馬拼音而非標準術語）。</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                            <p class="font-semibold text-primary-blue">結果 (職人精神體現)：</p>
+                            <p class="text-sm text-blue-800 leading-relaxed">
+                                Code Review **被駁回**，並要求**完全遵循文件（階段 1）的規範**。工程師 B 必須補上至少 **80% 的測試覆蓋率**，並修正所有命名以符合標準。此舉是東京軟體文化中「職人精神」的體現，強調程式碼本身就是一種高標準的**文件**，必須追求極致品質和可維護性。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="module">
+    const { createApp, ref } = Vue;
+
+    createApp({
+        setup() {
+            // 應用程式的 Tab 導航狀態
+            const currentTab = ref('culture');
+            
+            // 新增：用於追蹤滑鼠懸停的階段編號
+            const hoveredStage = ref(null);
+
+            // 導航列資料
+            const tabs = [
+                { id: 'culture', name: '東京軟體文化特點' },
+                { id: 'waterfall', name: '瀑布式開發 (工程師視角)' }
+            ];
+
+            // 內容區塊一：東京軟體文化特點資料
+            const cultureFeatures = [
+                {
+                    icon: '📄',
+                    title: '極致的品質與文件化',
+                    emphasis: '程式碼和文件品質要求苛刻',
+                    content: '強調可追溯性與降低維護成本。所有技術決策與實現細節必須被詳細記錄。'
+                },
+                {
+                    icon: '⏳',
+                    title: '高度的責任感與服務精神',
+                    emphasis: '源於對客戶承諾的極高責任感和專業精神',
+                    content: '致力於準時交付和零缺陷。工程師將專案視為自己的名譽。'
+                },
+                {
+                    icon: '⚙️',
+                    title: '嚴謹的流程管理',
+                    emphasis: '開發流程嚴格遵循階段性檢查點 (Gate Review)',
+                    content: '產出物需經細緻審批，回頭修改成本高，因此前期設計必須極度嚴密。'
+                },
+                {
+                    icon: '🗣️',
+                    title: '客戶關係與「報連相」溝通文化',
+                    emphasis: '強調「報告、聯繫、商量」的溝通習慣',
+                    content: '重視禮儀和準確性，確保資訊傳遞無誤，避免任何意外發生。'
+                }
+            ];
+
+            // 內容區塊二：瀑布式開發階段資料 (已移除企劃階段並重新編號)
+            const rawStages = [
+                {
+                    phase: '設計與文件審核 (Design & Review)',
+                    icon: '📐',
+                    role: '撰寫核心技術設計文件、資料庫綱要 (DB Schema)、API 規格。',
+                    deliverables: '系統架構文件、DB Schema、API Specs。必須進行嚴格的技術文件審核。'
+                },
+                {
+                    phase: '實作與程式碼審核 (Implementation & Code Review)',
+                    icon: '💻',
+                    role: '根據文件編寫程式碼，執行單元測試 (Unit Testing)。',
+                    deliverables: '所有原始碼、單元測試報告、經過嚴格 Code Review 的紀錄。'
+                },
+                {
+                    phase: '測試 (Testing)',
+                    icon: '✅',
+                    role: '協助進行整合測試和系統測試，確保系統功能符合技術規格。',
+                    deliverables: '整合測試報告、系統測試報告、缺陷追蹤清單。'
+                },
+                {
+                    phase: '運營/維護 (Operation/Maintenance)',
+                    icon: '🛠️',
+                    role: '系統上線後的監控、除錯、性能調優。',
+                    deliverables: '運行日誌、優化建議、程式碼修訂和優化。'
+                }
+            ];
+
+            // 重新編號階段
+            const waterfallStages = rawStages.map((stage, index) => ({
+                ...stage,
+                step: index + 1
+            }));
+
+            // 處理滑鼠懸停事件
+            const handleStageHover = (step) => {
+                hoveredStage.value = step;
+            };
+
+            // 處理滑鼠離開事件
+            const handleStageLeave = () => {
+                hoveredStage.value = null;
+            };
+
+            return {
+                currentTab,
+                tabs,
+                cultureFeatures,
+                waterfallStages,
+                hoveredStage,
+                handleStageHover,
+                handleStageLeave
+            };
+        }
+    }).mount('#app');
+</script>
+
+</body>
+</html>
