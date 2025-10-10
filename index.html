@@ -290,20 +290,16 @@
     <div class="absolute inset-0 bg-black/60 z-20"></div>
     <div class="relative z-30 flex flex-col items-center justify-center h-full text-center px-6">
       <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 animate-fade-in-up">
-        加入日商正社員（Local Hire），在日本寫下你的工程師篇章
+        將對日本工作、生活的憧憬變成日常！
       </h1>
       <p class="text-white/95 text-lg md:text-xl max-w-3xl mb-6 animate-fade-in-up delay-200">
-        我們非也不經營人力仲介或派遣。CTSS 為日本軟體開發公司，長期在台招募優秀工程師，<br class="hidden md:block">
-        提供透明 JD、線上面試與到任支援，雇用主體為日本用人公司。
+        CTSS 為日本軟體開發公司，長期在台招募優秀工程師
         <br><span lang="ja" class="text-white/90 text-base md:text-lg">
           日本のソフトウェア開発企業 CTSS は、台湾のエンジニアを「現地正社員（Local Hire）」として継続採用しています。
         </span>
       </p>
 
       <!-- 信任標章 -->
-      <div class="mb-8 inline-flex items-center gap-2 text-xs rounded-full bg-white/10 text-white px-3 py-1 animate-fade-in-up delay-200">
-        非派遣 • 非人力仲介 • 日本用人公司直聘（Local Hire）
-      </div>
 
       <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 animate-fade-in-up delay-400">
         <a href="#recruit"
@@ -334,7 +330,7 @@
         </p>
         <ul class="text-gray-700 leading-relaxed space-y-2">
           <li>• 技術領域：Java／C#／Salesforce</li>
-          <li>• 協作模式：與日本用人團隊共同開發，參與上游設計與跨部門協作</li>
+          <li>• 協作模式：與日本用人團隊共同開發，參與上游設計與跨部門協作與下游工程實作</li>
           <li>• 語言基準：日文 N2（或 N3→N2 計畫），會議溝通與書寫能力</li>
         </ul>
         <div class="inline-flex items-center gap-2 text-xs rounded-full bg-gray-100 text-gray-700 px-3 py-1">
@@ -361,8 +357,8 @@
         </div>
         <div class="rounded-xl border shadow-sm p-5 bg-slate-50">
           <p class="text-xs text-gray-500 mb-1">到任支援</p>
-          <h3 class="font-semibold text-lg">簽證由雇主申請</h3>
-          <p class="text-sm text-gray-700 mt-2">CTSS 協助文件與進度追蹤；住宿/通勤資訊與 30/90 天回訪。</p>
+          <h3 class="font-semibold text-lg">簽證由CTSS申請</h3>
+          <p class="text-sm text-gray-700 mt-2">CTSS將完善文件與進度追蹤；住宿/通勤資訊。</p>
         </div>
       </div>
     </div>
@@ -392,7 +388,7 @@
       </div>
 
       <div class="flex flex-col items-center">
-        <p class="text-5xl font-bold text-yellow-300">5+</p>
+        <p class="text-5xl font-bold text-yellow-300">3+</p>
         <p class="text-lg md:text-xl font-medium mt-2">年在台直聘與到任支援</p>
         <p lang="ja" class="text-gray-300 text-base">台湾向け現地採用・定着支援</p>
       </div>
@@ -424,22 +420,64 @@
           日本 gBizINFO 登記：法人番号 3020001148668
         </a>
         <span class="inline-flex items-center text-xs bg-slate-50 text-slate-700 border border-slate-200 px-3 py-1 rounded-full">
-          非仲介・非派遣｜日本用人公司直聘
+          非仲介・非派遣｜CTSS用人公司直聘
         </span>
       </div>
     </header>
 
     <!-- 合作夥伴 LOGO 帶（可左右滑動；替換 src/alt 即可） -->
-    <div class="relative">
-      <div class="flex overflow-x-auto gap-10 py-4 no-scrollbar">
-        <!-- 示例：恆逸；請替換或追加 -->
-        <a href="https://jobs.uuu.com.tw/Ap/Home/JobDetails?id=3727&selectJob=3106&page=1" target="_blank" class="shrink-0 opacity-80 hover:opacity-100 transition">
-          <img src="jp-portfolio/assets/img/jp-consultant/huni.png" alt="恆逸教育訓練中心" class="h-12 w-auto">
-        </a>
-        <!-- TODO: 於此追加合作 LOGO，建議高 40–48px，維持一致高度 -->
-        <!-- <img src="/assets/partners/xxx.png" alt="Partner Name" class="h-12 w-auto shrink-0 opacity-80 hover:opacity-100 transition"> -->
-      </div>
-      <p class="text-xs text-gray-500 mt-2">※ 上述 Logo 僅示意。新增合作夥伴時，請更新圖檔與連結。</p>
+<div class="relative">
+  <div class="flex overflow-x-auto gap-8 py-4 no-scrollbar">
+    <!-- 公司1：恆逸教育訓練中心 -->
+    <div class="flex flex-col items-center justify-center bg-slate-50 rounded-xl border border-slate-200 px-6 py-3 min-w-[140px] max-w-[160px]">
+      <img src="jp-portfolio/assets/img/jp-consultant/huni.png"
+           alt="恆逸教育訓練中心"
+           class="h-12 w-32 object-contain mx-auto mb-2"
+           style="background:#f3f4f6; border-radius:8px;">
+      <span class="block text-xs text-gray-700 font-semibold mt-1">恆逸教育訓練中心</span>
+      <a href="https://jobs.uuu.com.tw/Ap/Home/JobDetails?id=3727&selectJob=3106&page=1"
+         target="_blank"
+         class="text-blue-600 hover:underline text-xs mt-1">職缺連結</a>
+    </div>
+
+    <!-- 公司2：資展國際 -->
+    <div class="flex flex-col items-center justify-center bg-slate-50 rounded-xl border border-slate-200 px-6 py-3 min-w-[140px] max-w-[160px]">
+      <img src="data:image/jpeg;base64,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"
+           alt="資展國際"
+           class="h-12 w-32 object-contain mx-auto mb-2"
+           style="background:#f3f4f6; border-radius:8px;">
+      <span class="block text-xs text-gray-700 font-semibold mt-1">資展國際</span>
+      <a href="https://www.ispan.com.tw/job/"
+         target="_blank"
+         class="text-blue-600 hover:underline text-xs mt-1">分享連結</a>
+    </div>
+
+    <!-- 公司3：104 -->
+    <div class="flex flex-col items-center justify-center bg-slate-50 rounded-xl border border-slate-200 px-6 py-3 min-w-[140px] max-w-[160px]">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAA2FBMVEX///9oaGj/eACqqqqNjY35+fns7Oz29vaIiIhxaWH//Pm3cDL/fw5wcHD/hx3/kTDPz8//3L3/8OL/uXuwsLC/v79saGb/ljn/9Ov/oU3/nUX/+fP/7Nz/plf/w47/vYP/59L/s2/a2tqgoKB6enrk5OT/zJ7/4cb/1a//t3fGxsbT09O2traobjzNciPmdhH1dwidbUOJb1fCcil7alvtdw7uhSiRbk6wcDi9ci6Zb0qCbVvnjDrIcibhjUP4qWKshGDXn27qwJqjiXGtnpC9sabWdyG2f0yoUmQXAAAFGklEQVR4nO2ba0MaORSGB0S5OAzLRQdBBQFRFIu123a73da9dNv//486gLBzcpkkk2TWD+/z1cnJeUgyuY1BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUCjV3kGKX+TPTe6W60d7y7vJkcsEDnsZtepTrZXSHAgfmiwrTfJYs9KbOKh8zWFFVqsRjIco5GRKJfYy03v7+jceDkRYDy5kdTkTWmyZLauWCWw87EU4DyZktSdujFSz9KxUth7WIrwHDXmi0tionFh72IoIPNIhrwV/FlK7tvSwFBF5pEIuX5qj/vBm9VhOCMPH1Ze3pyKVpZ2HnYjQYx+yuq3k6fvGIc3ju1/5YpUcI+U/DysRsccu5NH6XXV6zFlsef/AlZsZd6+Uh42IxOMl5HXicfpObLFtFk6laThBpj0sRGQe25DXyfB4yNBY8+HJyoR45BeRemxCJh71lcIjGfufWBOD3kU98ov0KimaTMjqrPRRknsrjuNWuB8qzKifaa8lGQ8Xa60EppEPa6XfBBJxt91/KdBvj+KtGNO9aof5PPyIHJQ+cRbRqMMU6oyitcnvNKFpPg8vIvelY05j3hAUa8wTlfAjzegul4cPkWmT61eLoaTgsMv1rqZ6YhR4+BDhxnl0k1H0Jio/1s06l8jDh0idmczjfmbZflxe0ZwUs4nQw4cIM3+cybrVjsZZ+ZjkVMvh4UGEmc8HolHOmoSfSVJZ+1+Jh3uRU+rRUrXHmmHrD5JUxdzDvcgb4hGea5XvMO9g6UpF6uFcpE4bZK4ZYP6BZCV7cck9nIt8oQNEO8KATCZN8UIlw8O5CG2QsXaE8VeSlnC4Z3m4FnlLPC4MQjyTnbyob7EeNbKRcCyyytkgSZP8mU5rpuFRdbOxEovQV69RjL9Imty+hPdg19wuRZ6IyKVRjL9JnuzhusDDpwg9bNCbQ3ack81iT+3hU4QMkcgwyD/pvOhoF3r4FCHr3jPDIN9IqmoPnyKkZ3UNg/ybzquZ4bE7kyxKRHd5suOOZJvhsZv2ixK5NQxyT9Ldb3ilHh5F6IqxbRhkUk+zE5F7vFqRNik9VHoUJmLatW5J6YbS49UO9jkprfZ4ta/fbrpwpPZ4tRPiRbpwrPbwKfKe+1ENiNKFL9QePkW+k75luGgkZUdqD58i9NDXbBl/Screqj18inwmyZhtrGJStq/28CmS++wh2eqSkpGGh1cRumc3OXwg76zyDw0PryLMwe9YOwJtEHqonYt8H+rsRZiTX4MDOscetiLsnYL2kalrD2sR5rZK8xD7PHTtYS1SYq6rNK8VnHvYi9BDU72LnoF7D3sRut4qa1y9Dc88eDgQ4b7dUF+GevBwIFL6ypqorqd9eLgQ+RayJhkfDCzKfjxciBzcciJZn3D48XAiEjzzJtKPahjC7pE25KJnyvwxlwcr0mjxGZY3nzntZPrtbix+Rv22ltXqAjZkR/Bbv/zi9MMzrt2y33CFiwRjaaqZhGOrWj2IBDd5TMw8ihHJYxKZeRQkEpxLx4mEltmpS2EiQX+gTj6Fck32v4kEwcjAw+zsqGCR4EY8oQi61dhhrR5EgsalzpgPczRHwSLJSFmoVMKu8ehQ1pqXzJB90ZpqTzTKqVG8SEL7Qtws4bPp/ZxJrV5CNtrdAZUJB6OsDZeTWo050fsX1057PlpcXV0tRvM2u6j3VysAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAvfgIfiFabQ0tYJAAAAABJRU5ErkJggg=="
+           alt="104招募"
+           class="h-12 w-32 object-contain mx-auto mb-2"
+           style="background:#f3f4f6; border-radius:8px;">
+      <span class="block text-xs text-gray-700 font-semibold mt-1">104企業招募</span>
+      <a href="https://www.104.com.tw/company/1a2x6bmsiu?jobsource=google"
+         target="_blank"
+         class="text-blue-600 hover:underline text-xs mt-1">招募連結</a>
+    </div>
+
+        <!-- 可持續追加更多公司 -->
+        <!--
+        <div class="flex flex-col items-center justify-center bg-slate-50 rounded-xl border border-slate-200 px-6 py-3 min-w-[140px] max-w-[160px]">
+        <img src="jp-portfolio/assets/img/jp-consultant/xxx.png"
+            alt="公司名稱"
+            class="h-12 w-32 object-contain mx-auto mb-2"
+            style="background:#f3f4f6; border-radius:8px;">
+        <span class="block text-xs text-gray-700 font-semibold mt-1">公司名稱</span>
+        <a href="https://xxx.com/job/"
+            target="_blank"
+            class="text-blue-600 hover:underline text-xs mt-1">職缺連結</a>
+        </div>
+        -->
+    </div>
     </div>
 
     <!-- 分隔 -->
@@ -480,7 +518,7 @@
         <div class="bg-white border rounded-lg p-4">
           <p class="text-xs uppercase tracking-wider text-slate-500">合規聲明</p>
           <ul class="mt-1 text-sm text-slate-800 space-y-1">
-            <li>• 我們非人力仲介、非派遣；雇用主體為日本用人公司。</li>
+            <li>• 我們非人力仲介、非派遣；雇用主體即為CTSS，並具有穩定開發案源。</li>
             <li>• 個人資料僅用於招募流程與面談安排，依
               <a href="http://www.ctss.co.jp/personal.html" target="_blank" class="text-blue-600 hover:text-blue-800 underline">隱私權政策</a>
               管理。
@@ -596,7 +634,7 @@
         <ul class="text-left text-gray-700 text-sm md:text-base leading-relaxed mx-auto max-w-md space-y-1 mb-6">
           <li>• 流程：履歷初審 → 技術評估 → 用人面談 → Offer／簽證（雇主申請） → 到任支援</li>
           <li>• 語言：日文 N2 為基準（或 N3→N2 計畫），會議與書寫能力</li>
-          <li>• 目標回覆：履歷初審 3 個工作天內；常見面試時程 2–6 週</li>
+          <li>• 目標回覆：履歷初審 3 個工作天內；常見面試時程 2–4 週</li>
           <li>• 到任支援：文件協助、住宿/通勤資訊支援</li>
         </ul>
         <a href="#recruit"
@@ -641,7 +679,7 @@
       </span>
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- 卡片1：日本軟體工程文化 -->
       <div class="bg-white rounded-2xl shadow-lg p-8 text-center transform hover:scale-105 hover:shadow-xl transition duration-300 flex flex-col justify-between">
         <div>
@@ -681,6 +719,26 @@
         <a href="interview.html"
            class="inline-block border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white font-semibold px-6 py-3 rounded-md text-base transition duration-300 mt-4 shadow-sm">
           前往面試準備工具
+        </a>
+      </div>
+
+      <!-- 卡片3：履歷撰寫與優化 -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center transform hover:scale-105 hover:shadow-xl transition duration-300 flex flex-col justify-between">
+        <div>
+          <div class="flex justify-center mb-6">
+            <svg class="w-14 h-14 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 16v-1a4 4 0 014-4h4m-6 5v2a2 2 0 002 2h6a2 2 0 002-2v-7a2 2 0 00-2-2h-6a2 2 0 00-2 2v2" />
+            </svg>
+          </div>
+          <h3 class="text-gray-900 text-2xl font-bold mb-3">履歷撰寫與優化</h3>
+          <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4">
+            提供日文履歷、職務經歷書撰寫範例與格式下載，協助你展現專業背景與專案成果，提升面試邀約率。
+          </p>
+        </div>
+        <a href="resume.html"
+           class="inline-block border border-emerald-500 text-emerald-500 hover:bg-emerald-500 hover:text-white font-semibold px-6 py-3 rounded-md text-base transition duration-300 mt-4 shadow-sm">
+          履歷撰寫資源
         </a>
       </div>
     </div>
@@ -1440,7 +1498,7 @@ document.addEventListener('DOMContentLoaded', GAHelper.bindEvents);
             </p>
             <p class="text-gray-400 text-xs mt-1">
                 <!-- 版本號會由下方腳本自動填入 -->
-                Version: <span id="app-version" class="font-mono">v1.1.0</span>
+                Version: <span id="app-version" class="font-mono">v1.2.0</span>
                 <span id="build-date" class="ml-1 opacity-75"></span>
             </p>
             </div>
@@ -1583,7 +1641,7 @@ document.addEventListener('DOMContentLoaded', GAHelper.bindEvents);
                 {
                     title: 'Java 後端開發工程師',
                     location: '東京 23 區',
-                    salary: '年薪 300萬 - 500萬 日幣',
+                    salary: '年薪 280萬 - 400萬 日幣',
                     description: '負責金融系統的核心後端開發與維護，參與系統設計與性能優化。',
                     requirements: ['1年以上 Java 開發經驗', '熟悉 Spring Boot、MyBatis', '具備資料庫設計與 SQL 優化能力', '有大型系統開發經驗者佳'],
                     applyLink: 'https://www.104.com.tw/job/87pvv?jobsource=n_my104_search'
@@ -1601,7 +1659,7 @@ document.addEventListener('DOMContentLoaded', GAHelper.bindEvents);
                 {
                     title: 'C#/.NET 後端工程師',
                     location: '東京 23 區',
-                    salary: '年薪 300萬 - 500萬 日幣',
+                    salary: '年薪 280萬 - 400萬 日幣',
                     description: '開發與維護製造業相關的 Web 應用程式與內部管理系統。',
                     requirements: ['1年以上 C#/.NET 開發經驗', '熟悉 ASP.NET Core, Entity Framework', '具備 MS SQL Server 使用經驗', '有前端 Vue 或 React 經驗者加分'],
                     applyLink: 'https://www.104.com.tw/job/8857t?jobsource=n_my104_search'
